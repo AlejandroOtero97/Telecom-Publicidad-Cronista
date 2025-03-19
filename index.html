@@ -443,6 +443,13 @@
             opacity: 0.20;
             background-size: cover;
             background-position: center;
+            /* Efectos de desvanecimiento en los bordes */
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%),
+                               linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+            -webkit-mask-composite: source-over;
+            mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%),
+                        linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+            mask-composite: intersect;
         }
         
         .technology::before {
@@ -460,7 +467,7 @@
         /* Sobrescribir estilo para la sección de impacto */
         .impact-section::before {
             width: 100%;
-            background-image: url('img/stand.png');
+            background-image: url('img/usuario2.jpg');
         }
         
         .impact-section::after {
@@ -835,7 +842,7 @@
                             </div>
                         </div>
                         <div class="carousel-slide">
-                            <img src="img/usuario2.jpg" alt="VR para agricultura 3">
+                            <img src="img/11032025-_DSC9325.jpg" alt="VR para agricultura 3">
                             <div class="carousel-caption">
                                 <h3>Capacitación inmersiva</h3>
                                 <p>Entrenamiento virtual para productores que optimiza procesos y reduce costos</p>
