@@ -327,7 +327,7 @@
             padding: 1.5rem;
             background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
             color: white;
-            opacity: 0;
+            opacity: 0.7;
             transition: opacity 0.3s;
         }
         
@@ -457,6 +457,16 @@
             background-image: url('img/usuario2.jpg');
         }
         
+        /* Sobrescribir estilo para la sección de impacto */
+        .impact-section::before {
+            width: 100%;
+            background-image: url('img/stand.png');
+        }
+        
+        .impact-section::after {
+            content: none; /* Eliminar la segunda imagen */
+        }
+        
         .tech-content {
             position: relative;
             z-index: 2;
@@ -547,23 +557,39 @@
             position: relative;
             max-width: 90%;
             max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         .lightbox-img {
-            max-width: 100%;
-            max-height: 80vh;
+            max-width: 90vw;
+            max-height: 70vh;
             display: block;
             border-radius: 5px;
+            object-fit: contain;
         }
         
         .lightbox-caption {
             position: absolute;
-            bottom: -40px;
+            bottom: -80px;
             left: 0;
             width: 100%;
             color: white;
             text-align: center;
-            font-size: 1.2rem;
+        }
+        
+        .lightbox-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .lightbox-desc {
+            font-size: 1.1rem;
+            max-width: 80%;
+            margin: 0 auto;
+            line-height: 1.5;
         }
         
         .lightbox-close {
@@ -606,6 +632,10 @@
         
         .lightbox-nav button:hover {
             background: rgba(255, 255, 255, 0.4);
+        }
+        
+        .lightbox-grid-trigger {
+            cursor: pointer;
         }
         
         /* Contact Section */
@@ -805,7 +835,7 @@
                             </div>
                         </div>
                         <div class="carousel-slide">
-                            <img src="img/11032025-_DSC9325.jpg" alt="VR para agricultura 3">
+                            <img src="img/usuario2.jpg" alt="VR para agricultura 3">
                             <div class="carousel-caption">
                                 <h3>Capacitación inmersiva</h3>
                                 <p>Entrenamiento virtual para productores que optimiza procesos y reduce costos</p>
@@ -840,35 +870,35 @@
                 <p>Descubra cómo la realidad virtual está revolucionando la gestión agrícola a través de estas imágenes de nuestra tecnología en acción.</p>
             </div>
             <div class="vr-image-grid">
-                <div class="grid-image-container span-col-8 span-row-2">
+                <div class="grid-image-container span-col-8 span-row-2 lightbox-grid-trigger">
                     <img src="img/monitoreo.jpg" alt="Telecom VR Headset" class="grid-image">
                     <div class="grid-image-overlay">
                         <div class="grid-image-title">Lentes VR de última generación</div>
                         <div class="grid-image-desc">Nuestros dispositivos de realidad virtual ofrecen una experiencia inmersiva para monitorear y analizar datos del campo en tiempo real.</div>
                     </div>
                 </div>
-                <div class="grid-image-container span-col-4">
+                <div class="grid-image-container span-col-4 lightbox-grid-trigger">
                     <img src="img/11032025-_DSC9325.jpg" alt="Agricultor usando VR" class="grid-image">
                     <div class="grid-image-overlay">
                         <div class="grid-image-title">Adopción tecnológica</div>
                         <div class="grid-image-desc">Productores agrícolas adoptando la tecnología VR en sus operaciones diarias.</div>
                     </div>
                 </div>
-                <div class="grid-image-container span-col-4">
+                <div class="grid-image-container span-col-4 lightbox-grid-trigger">
                     <img src="img/Telecom - Horizontal.00_01_41_23.Imagen fija004.png" alt="Datos en tiempo real" class="grid-image">
                     <div class="grid-image-overlay">
                         <div class="grid-image-title">Análisis de datos</div>
                         <div class="grid-image-desc">Visualización de datos en tiempo real para tomar decisiones inmediatas.</div>
                     </div>
                 </div>
-                <div class="grid-image-container span-col-6">
+                <div class="grid-image-container span-col-6 lightbox-grid-trigger">
                     <img src="img/portada.jpg" alt="Stand Telecom Expoagro" class="grid-image">
                     <div class="grid-image-overlay">
                         <div class="grid-image-title">Telecom en Expoagro 2025</div>
                         <div class="grid-image-desc">Nuestra presencia en la feria agrícola más importante de Argentina.</div>
                     </div>
                 </div>
-                <div class="grid-image-container span-col-6">
+                <div class="grid-image-container span-col-6 lightbox-grid-trigger">
                     <img src="img/soluciones.png" alt="Demostración tecnológica" class="grid-image">
                     <div class="grid-image-overlay">
                         <div class="grid-image-title">Demostración tecnológica</div>
@@ -942,7 +972,7 @@
     </section>
 
     <!-- Impact Section -->
-    <section class="section technology">
+    <section class="section technology impact-section">
         <div class="container tech-content scroll-reveal">
             <div class="tech-text">
                 <h2>Impacto en las comunidades rurales</h2>
@@ -967,7 +997,10 @@
         <button class="lightbox-close">&times;</button>
         <div class="lightbox-content">
             <img src="" alt="" class="lightbox-img">
-            <div class="lightbox-caption"></div>
+            <div class="lightbox-caption">
+                <div class="lightbox-title"></div>
+                <div class="lightbox-desc"></div>
+            </div>
         </div>
         <div class="lightbox-nav">
             <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
@@ -1065,17 +1098,50 @@
             const lightbox = document.querySelector('.lightbox');
             const lightboxImg = document.querySelector('.lightbox-img');
             const lightboxCaption = document.querySelector('.lightbox-caption');
+            const lightboxTitle = document.querySelector('.lightbox-title');
+            const lightboxDesc = document.querySelector('.lightbox-desc');
             const lightboxClose = document.querySelector('.lightbox-close');
             const lightboxNext = document.querySelector('.lightbox-next');
             const lightboxPrev = document.querySelector('.lightbox-prev');
             const lightboxTriggers = document.querySelectorAll('.lightbox-trigger');
             
+            // Lightbox para el grid de imágenes
+            const gridLightboxTriggers = document.querySelectorAll('.lightbox-grid-trigger');
+            
             let currentImgIndex = 0;
             const imgCount = lightboxTriggers.length;
+            
+            let gridImages = [];
+            gridLightboxTriggers.forEach((container) => {
+                const img = container.querySelector('.grid-image');
+                const title = container.querySelector('.grid-image-title').textContent;
+                const desc = container.querySelector('.grid-image-desc').textContent;
+                
+                gridImages.push({
+                    src: img.src,
+                    alt: img.alt,
+                    title: title,
+                    desc: desc
+                });
+            });
             
             const openLightbox = (img, caption, index) => {
                 lightboxImg.src = img.src;
                 lightboxCaption.textContent = caption;
+                lightboxTitle.textContent = "";
+                lightboxDesc.textContent = "";
+                currentImgIndex = index;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            };
+            
+            const openGridLightbox = (index) => {
+                const imageData = gridImages[index];
+                lightboxImg.src = imageData.src;
+                lightboxImg.alt = imageData.alt;
+                lightboxTitle.textContent = imageData.title;
+                lightboxDesc.textContent = imageData.desc;
+                lightboxCaption.textContent = "";
                 currentImgIndex = index;
                 lightbox.classList.add('active');
                 document.body.style.overflow = 'hidden';
@@ -1091,6 +1157,8 @@
                 const nextImg = lightboxTriggers[currentImgIndex];
                 lightboxImg.src = nextImg.src;
                 lightboxCaption.textContent = nextImg.dataset.caption;
+                lightboxTitle.textContent = "";
+                lightboxDesc.textContent = "";
             };
             
             const prevImage = () => {
@@ -1098,17 +1166,61 @@
                 const prevImg = lightboxTriggers[currentImgIndex];
                 lightboxImg.src = prevImg.src;
                 lightboxCaption.textContent = prevImg.dataset.caption;
+                lightboxTitle.textContent = "";
+                lightboxDesc.textContent = "";
             };
             
-            lightboxTriggers.forEach((trigger, index) => {
+            const nextGridImage = () => {
+                currentImgIndex = (currentImgIndex + 1) % gridImages.length;
+                const nextImg = gridImages[currentImgIndex];
+                lightboxImg.src = nextImg.src;
+                lightboxImg.alt = nextImg.alt;
+                lightboxTitle.textContent = nextImg.title;
+                lightboxDesc.textContent = nextImg.desc;
+                lightboxCaption.textContent = "";
+            };
+            
+            const prevGridImage = () => {
+                currentImgIndex = (currentImgIndex - 1 + gridImages.length) % gridImages.length;
+                const prevImg = gridImages[currentImgIndex];
+                lightboxImg.src = prevImg.src;
+                lightboxImg.alt = prevImg.alt;
+                lightboxTitle.textContent = prevImg.title;
+                lightboxDesc.textContent = prevImg.desc;
+                lightboxCaption.textContent = "";
+            };
+            
+            if (lightboxTriggers.length > 0) {
+                lightboxTriggers.forEach((trigger, index) => {
+                    trigger.addEventListener('click', () => {
+                        openLightbox(trigger, trigger.dataset.caption, index);
+                    });
+                });
+            }
+            
+            gridLightboxTriggers.forEach((trigger, index) => {
                 trigger.addEventListener('click', () => {
-                    openLightbox(trigger, trigger.dataset.caption, index);
+                    openGridLightbox(index);
                 });
             });
             
             lightboxClose.addEventListener('click', closeLightbox);
-            lightboxNext.addEventListener('click', nextImage);
-            lightboxPrev.addEventListener('click', prevImage);
+            
+            lightboxNext.addEventListener('click', () => {
+                if (lightboxTitle.textContent) {
+                    nextGridImage();
+                } else {
+                    nextImage();
+                }
+            });
+            
+            lightboxPrev.addEventListener('click', () => {
+                if (lightboxTitle.textContent) {
+                    prevGridImage();
+                } else {
+                    prevImage();
+                }
+            });
             
             lightbox.addEventListener('click', (e) => {
                 if (e.target === lightbox) {
