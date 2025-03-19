@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telecom AgTech VR - Digitalización del Agro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
         
@@ -51,6 +52,7 @@
             color: var(--text-light);
             overflow: hidden;
             position: relative;
+            padding-top: 4rem;
         }
         
         .hero::before {
@@ -91,28 +93,286 @@
             animation: fadeInUp 0.8s 0.2s forwards;
         }
         
-        .hero-image {
-            position: absolute;
-            right: -5%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50%;
-            max-width: 700px;
-            border-radius: 10px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        /* Carousel Styles */
+        .carousel-container {
+            width: 100%;
+            position: relative;
+            margin: 2rem 0;
             opacity: 0;
-            animation: fadeInRight 1s 0.4s forwards;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s 0.4s forwards;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .carousel {
+            display: flex;
+            width: 100%;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--telecom-blue);
+        }
+        
+        .carousel-slide.active {
+            opacity: 1;
+        }
+        
+        .carousel-slide img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 2rem;
+            text-align: left;
+        }
+        
+        .carousel-caption h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .carousel-caption p {
+            font-size: 1.1rem;
+            max-width: 80%;
+        }
+        
+        .carousel-buttons {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            transform: translateY(-50%);
+            z-index: 10;
+            padding: 0 1rem;
+        }
+        
+        .carousel-button {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .carousel-button:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .carousel-indicator.active {
+            background: white;
+        }
+        
+        /* Video container */
+        .video-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 2rem 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            background-color: #000;
+            aspect-ratio: 16/9;
+            position: relative;
+        }
+        
+        .hero-video {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s 0.4s forwards;
+        }
+        
+        .video-placeholder {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            background-color: var(--telecom-blue);
+            color: white;
+        }
+        
+        .responsive-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* VR Experience Gallery */
+        .vr-gallery {
+            padding: 5rem 0;
+            background-color: var(--telecom-blue);
+            color: white;
+        }
+        
+        .vr-gallery-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .vr-gallery-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .vr-gallery-title p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .vr-image-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: 200px;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .grid-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .grid-image-container:hover {
+            transform: scale(1.05);
+        }
+        
+        .grid-image-container.span-row-2 {
+            grid-row: span 2;
+        }
+        
+        .grid-image-container.span-col-4 {
+            grid-column: span 4;
+        }
+        
+        .grid-image-container.span-col-6 {
+            grid-column: span 6;
+        }
+        
+        .grid-image-container.span-col-8 {
+            grid-column: span 8;
+        }
+        
+        .grid-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .grid-image-container:hover .grid-image {
+            transform: scale(1.1);
+        }
+        
+        .grid-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .grid-image-container:hover .grid-image-overlay {
+            opacity: 1;
+        }
+        
+        .grid-image-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .grid-image-desc {
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
         
         /* Overview Section */
         .overview {
             background-color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .overview::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background-image: url('img/tecnologias.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 1;
         }
         
         .overview-content {
             display: flex;
             flex-direction: column;
             gap: 3rem;
+            position: relative;
+            z-index: 2;
         }
         
         .overview-text {
@@ -170,41 +430,43 @@
         /* Technology Section */
         .technology {
             background-color: var(--light-bg);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .technology::before, .technology::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.20;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .technology::before {
+            left: 0;
+            width: 50%;
+            background-image: url('img/usuario1.jpg');
+        }
+        
+        .technology::after {
+            right: 0;
+            width: 50%;
+            background-image: url('img/usuario2.jpg');
         }
         
         .tech-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 3rem;
-            align-items: center;
+            position: relative;
+            z-index: 2;
+            width: 100%;
         }
         
         .tech-text {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .tech-images {
-            flex: 1;
-            min-width: 300px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-        
-        .tech-images img {
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.562);
-        }
-        
-        .tech-image {
             width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-        
-        .tech-image:hover {
-            transform: scale(1.05);
+            max-width: 900px;
+            margin: 0 auto;
         }
         
         .technology h2 {
@@ -262,39 +524,88 @@
             line-height: 1.6;
         }
         
-        /* Video Section */
-        .video-container {
-            width: 100%;
-            max-width: 900px;
-            margin: 2rem 0;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            background-color: #000;
-            aspect-ratio: 16/9;
-            position: relative;
-        }
-        
-        .hero-video {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s 0.4s forwards;
-        }
-        
-        .video-placeholder {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        /* Image Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--telecom-blue);
-            color: white;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 2rem;
         }
         
-        .video-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 80vh;
+        }
+        
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 80vh;
+            display: block;
+            border-radius: 5px;
+        }
+        
+        .lightbox-caption {
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            width: 100%;
+            color: white;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 1001;
+            padding: 0 2rem;
+        }
+        
+        .lightbox-nav button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        
+        .lightbox-nav button:hover {
+            background: rgba(255, 255, 255, 0.4);
         }
         
         /* Contact Section */
@@ -375,26 +686,26 @@
                 font-size: 2.5rem;
             }
             
-            .hero-image {
-                width: 70%;
-                opacity: 0.4;
-            }
-            
             .section {
                 padding: 4rem 1.5rem;
+            }
+            
+            .carousel {
+                height: 400px;
+            }
+            
+            .vr-image-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+            
+            .grid-image-container.span-col-4,
+            .grid-image-container.span-col-6,
+            .grid-image-container.span-col-8 {
+                grid-column: span 3;
             }
         }
         
         @media (max-width: 768px) {
-            .hero-image {
-                position: relative;
-                width: 100%;
-                margin-top: 2rem;
-                transform: none;
-                right: 0;
-                opacity: 1;
-            }
-            
             .tech-content, .overview-content {
                 flex-direction: column;
             }
@@ -407,6 +718,64 @@
                 min-height: auto;
                 padding: 3rem 1rem;
             }
+            
+            .carousel {
+                height: 300px;
+            }
+            
+            .carousel-caption h3 {
+                font-size: 1.4rem;
+            }
+            
+            .carousel-caption p {
+                font-size: 1rem;
+                max-width: 100%;
+            }
+            
+            .vr-image-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-auto-rows: 180px;
+            }
+            
+            .grid-image-container {
+                grid-column: span 1 !important;
+            }
+            
+            .grid-image-container.span-row-2 {
+                grid-row: span 1;
+            }
+            
+            .grid-image-overlay {
+                opacity: 1;
+                padding: 1rem;
+            }
+            
+            .grid-image-title {
+                font-size: 1.1rem;
+            }
+            
+            .grid-image-desc {
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .vr-image-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .carousel-button {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .carousel {
+                height: 250px;
+            }
         }
     </style>
 </head>
@@ -418,11 +787,92 @@
                 <h1>Redes dedicadas y datos en tiempo real: así es el plan de Telecom para digitalizar el agro</h1>
                 <p>La nueva tecnología de realidad virtual de Telecom está transformando la forma en que monitorizamos el campo, ofreciendo soluciones innovadoras para mejorar la productividad y sostenibilidad del sector agrícola.</p>
                 
-                <div class="video-container hero-video">
-                    <div class="video-placeholder">
-                        <video src="video/Telecom - Expoagro - 30sec.mp4" controls preload="metadata" class="responsive-video" width="100%" height="100%" loop muted autoplay>
-                            Su navegador no soporta la reproducción de videos.
-                        </video>
+                <!-- Carousel replaces the single video -->
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <div class="carousel-slide active">
+                            <img src="img/EXPO AGRO-66.jpg" alt="VR para agricultura 1">
+                            <div class="carousel-caption">
+                                <h3>Transformando el agro con realidad virtual</h3>
+                                <p>Los lentes VR permiten monitorear cultivos y analizar datos en tiempo real</p>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="img/11032025-_DSC9355.jpg" alt="VR para agricultura 2">
+                            <div class="carousel-caption">
+                                <h3>Monitoreo de precisión</h3>
+                                <p>Visualización detallada del estado de los cultivos mediante realidad virtual</p>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="img/11032025-_DSC9325.jpg" alt="VR para agricultura 3">
+                            <div class="carousel-caption">
+                                <h3>Capacitación inmersiva</h3>
+                                <p>Entrenamiento virtual para productores que optimiza procesos y reduce costos</p>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <video src="video/Telecom - Expoagro - 30sec.mp4" controls preload="metadata" class="responsive-video" muted autoplay loop>
+                                Su navegador no soporta la reproducción de videos.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="carousel-buttons">
+                        <button class="carousel-button prev-button"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-button next-button"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="carousel-indicators">
+                        <div class="carousel-indicator active" data-slide="0"></div>
+                        <div class="carousel-indicator" data-slide="1"></div>
+                        <div class="carousel-indicator" data-slide="2"></div>
+                        <div class="carousel-indicator" data-slide="3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VR Experience Gallery Section -->
+    <section class="section vr-gallery">
+        <div class="container scroll-reveal">
+            <div class="vr-gallery-title">
+                <h2>Experiencia VR en el Agro</h2>
+                <p>Descubra cómo la realidad virtual está revolucionando la gestión agrícola a través de estas imágenes de nuestra tecnología en acción.</p>
+            </div>
+            <div class="vr-image-grid">
+                <div class="grid-image-container span-col-8 span-row-2">
+                    <img src="img/monitoreo.jpg" alt="Telecom VR Headset" class="grid-image">
+                    <div class="grid-image-overlay">
+                        <div class="grid-image-title">Lentes VR de última generación</div>
+                        <div class="grid-image-desc">Nuestros dispositivos de realidad virtual ofrecen una experiencia inmersiva para monitorear y analizar datos del campo en tiempo real.</div>
+                    </div>
+                </div>
+                <div class="grid-image-container span-col-4">
+                    <img src="img/11032025-_DSC9325.jpg" alt="Agricultor usando VR" class="grid-image">
+                    <div class="grid-image-overlay">
+                        <div class="grid-image-title">Adopción tecnológica</div>
+                        <div class="grid-image-desc">Productores agrícolas adoptando la tecnología VR en sus operaciones diarias.</div>
+                    </div>
+                </div>
+                <div class="grid-image-container span-col-4">
+                    <img src="img/Telecom - Horizontal.00_01_41_23.Imagen fija004.png" alt="Datos en tiempo real" class="grid-image">
+                    <div class="grid-image-overlay">
+                        <div class="grid-image-title">Análisis de datos</div>
+                        <div class="grid-image-desc">Visualización de datos en tiempo real para tomar decisiones inmediatas.</div>
+                    </div>
+                </div>
+                <div class="grid-image-container span-col-6">
+                    <img src="img/portada.jpg" alt="Stand Telecom Expoagro" class="grid-image">
+                    <div class="grid-image-overlay">
+                        <div class="grid-image-title">Telecom en Expoagro 2025</div>
+                        <div class="grid-image-desc">Nuestra presencia en la feria agrícola más importante de Argentina.</div>
+                    </div>
+                </div>
+                <div class="grid-image-container span-col-6">
+                    <img src="img/soluciones.png" alt="Demostración tecnológica" class="grid-image">
+                    <div class="grid-image-overlay">
+                        <div class="grid-image-title">Demostración tecnológica</div>
+                        <div class="grid-image-desc">Visitantes experimentando la tecnología VR durante Expoagro 2025.</div>
                     </div>
                 </div>
             </div>
@@ -463,12 +913,6 @@
                 <p>"Lo primero que hacemos cuando viene un cliente es preguntarle cuál es su actividad, en qué zona del país se encuentra y cuáles son sus principales desafíos. Queremos entender en qué aspectos está siendo poco eficiente o qué le está haciendo perder dinero", explicó.</p>
                 <p>Para determinar la viabilidad de un proyecto, la empresa analiza el polígono del campo, las condiciones geográficas y la disponibilidad de antenas en la región. "Si es necesario instalar una antena desde cero, el proceso puede demorar entre 30 y 60 días, dependiendo de la zona. Luego, el productor ya está conectado y puede comenzar a medir distintos aspectos de su actividad, desde el monitoreo de cultivos hasta la automatización de procesos o la implementación de cámaras de seguridad", detalló Liceda Rosasco.</p>
             </div>
-            <div class="tech-images">
-                <img src="img/tecnologias.png" alt="Tecnología VR" class="tech-image">
-                <img src="img/monitoreo.jpg" alt="Monitoreo del campo" class="tech-image">
-                <img src="img/soluciones.png" alt="Soluciones IoT" class="tech-image">
-                <img src="img/stand.png" alt="Stand Telecom" class="tech-image">
-            </div>
         </div>
     </section>
 
@@ -497,8 +941,6 @@
         </div>
     </section>
 
-
-
     <!-- Impact Section -->
     <section class="section technology">
         <div class="container tech-content scroll-reveal">
@@ -507,10 +949,6 @@
                 <p>El despliegue de infraestructura tecnológica no solo beneficia a los productores, sino también a las comunidades cercanas. El ecosistema AgTech aceleró su crecimiento en los últimos años y es hoy una apuesta fuerte para el desarrollo económico local. En noviembre de 2024 Telecom anunció que finalizó el despliegue de su infraestructura de conectividad en los partidos de Pergamino y Rojas en la provincia de Buenos Aires, en el marco de su plan estratégico de desarrollo del primer cluster de conectividad del ecosistema AgTech.</p>
                 <p>Por ello, también en Pergamino y Rojas, más de 134.000 personas tienen acceso a internet de calidad, impactando en 228 escuelas, 28 centros de salud y en la conectividad de rutas rurales.</p>
                 <p>"La conectividad mejora la educación, la salud y el comercio local. Además, permite que los productores y sus familias tengan acceso a herramientas digitales que antes eran exclusivas de las ciudades", destacó Liceda Rosasco. También subrayó que una mejor infraestructura tecnológica puede potenciar el turismo rural y fortalecer la seguridad vial en zonas alejadas.</p>
-            </div>
-            <div class="tech-images">
-                <img src="img/usuario1.jpg" alt="Comunidades rurales" class="tech-image">
-                <img src="img/usuario2.jpg" alt="Escuelas conectadas" class="tech-image">
             </div>
         </div>
     </section>
@@ -523,6 +961,19 @@
             <a href="#" class="cta-button">Solicitar información</a>
         </div>
     </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox">
+        <button class="lightbox-close">&times;</button>
+        <div class="lightbox-content">
+            <img src="" alt="" class="lightbox-img">
+            <div class="lightbox-caption"></div>
+        </div>
+        <div class="lightbox-nav">
+            <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
 
     <script>
         // Scroll reveal animation
@@ -561,6 +1012,116 @@
             
             // Initialize
             handleScrollAnimation();
+            
+            // Carousel Functionality
+            const carousel = document.querySelector('.carousel');
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            const prevButton = document.querySelector('.prev-button');
+            const nextButton = document.querySelector('.next-button');
+            
+            let currentSlide = 0;
+            const slideCount = slides.length;
+            
+            const showSlide = (index) => {
+                slides.forEach(slide => slide.classList.remove('active'));
+                indicators.forEach(indicator => indicator.classList.remove('active'));
+                
+                slides[index].classList.add('active');
+                indicators[index].classList.add('active');
+                currentSlide = index;
+            };
+            
+            const nextSlide = () => {
+                showSlide((currentSlide + 1) % slideCount);
+            };
+            
+            const prevSlide = () => {
+                showSlide((currentSlide - 1 + slideCount) % slideCount);
+            };
+            
+            // Event listeners
+            nextButton.addEventListener('click', nextSlide);
+            prevButton.addEventListener('click', prevSlide);
+            
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    showSlide(index);
+                });
+            });
+            
+            // Auto slide change
+            let slideInterval = setInterval(nextSlide, 5000);
+            
+            carousel.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+            
+            carousel.addEventListener('mouseleave', () => {
+                slideInterval = setInterval(nextSlide, 5000);
+            });
+            
+            // Lightbox functionality
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxImg = document.querySelector('.lightbox-img');
+            const lightboxCaption = document.querySelector('.lightbox-caption');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            const lightboxNext = document.querySelector('.lightbox-next');
+            const lightboxPrev = document.querySelector('.lightbox-prev');
+            const lightboxTriggers = document.querySelectorAll('.lightbox-trigger');
+            
+            let currentImgIndex = 0;
+            const imgCount = lightboxTriggers.length;
+            
+            const openLightbox = (img, caption, index) => {
+                lightboxImg.src = img.src;
+                lightboxCaption.textContent = caption;
+                currentImgIndex = index;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            };
+            
+            const closeLightbox = () => {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            };
+            
+            const nextImage = () => {
+                currentImgIndex = (currentImgIndex + 1) % imgCount;
+                const nextImg = lightboxTriggers[currentImgIndex];
+                lightboxImg.src = nextImg.src;
+                lightboxCaption.textContent = nextImg.dataset.caption;
+            };
+            
+            const prevImage = () => {
+                currentImgIndex = (currentImgIndex - 1 + imgCount) % imgCount;
+                const prevImg = lightboxTriggers[currentImgIndex];
+                lightboxImg.src = prevImg.src;
+                lightboxCaption.textContent = prevImg.dataset.caption;
+            };
+            
+            lightboxTriggers.forEach((trigger, index) => {
+                trigger.addEventListener('click', () => {
+                    openLightbox(trigger, trigger.dataset.caption, index);
+                });
+            });
+            
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightboxNext.addEventListener('click', nextImage);
+            lightboxPrev.addEventListener('click', prevImage);
+            
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+            
+            // Close lightbox with ESC key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    closeLightbox();
+                }
+            });
         });
     </script>
 </body>
