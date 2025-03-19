@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telecom AgTech VR - Digitalización del Agro</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --telecom-blue: #1a237e;
+            --telecom-light-blue: #4051b5;
+            --telecom-purple: #5e35b1;
+            --light-bg: #f5f7fa;
+            --text-dark: #212121;
+            --text-light: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+        
+        .section {
+            padding: 5rem 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--telecom-blue), var(--telecom-purple));
+            color: var(--text-light);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1" /></svg>') repeat;
+            opacity: 0.2;
+        }
+        
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s 0.2s forwards;
+        }
+        
+        .hero-image {
+            position: absolute;
+            right: -5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            max-width: 700px;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            animation: fadeInRight 1s 0.4s forwards;
+        }
+        
+        /* Overview Section */
+        .overview {
+            background-color: var(--text-light);
+        }
+        
+        .overview-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        
+        .overview-text {
+            flex: 1;
+        }
+        
+        .overview h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--telecom-blue);
+        }
+        
+        .overview p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-item {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--telecom-purple);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-dark);
+        }
+        
+        /* Technology Section */
+        .technology {
+            background-color: var(--light-bg);
+        }
+        
+        .tech-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .tech-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .tech-images {
+            flex: 1;
+            min-width: 300px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .tech-image {
+            width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .tech-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .technology h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--telecom-blue);
+        }
+        
+        .technology p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            background: linear-gradient(135deg, var(--telecom-light-blue), var(--telecom-purple));
+            color: var(--text-light);
+        }
+        
+        .benefits h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .benefit-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .benefit-desc {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* Video Section */
+        .video-section {
+            background-color: var(--text-light);
+            text-align: center;
+        }
+        
+        .video-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--telecom-blue);
+        }
+        
+        .video-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            background-color: #000;
+            aspect-ratio: 16/9;
+            position: relative;
+        }
+        
+        .video-placeholder {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            background-color: var(--telecom-blue);
+            color: white;
+        }
+        
+        .video-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: var(--light-bg);
+            text-align: center;
+        }
+        
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--telecom-blue);
+        }
+        
+        .contact p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--telecom-blue), var(--telecom-purple));
+            color: white;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translate(30px, -50%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(0, -50%);
+            }
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-image {
+                width: 70%;
+                opacity: 0.4;
+            }
+            
+            .section {
+                padding: 4rem 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-image {
+                position: relative;
+                width: 100%;
+                margin-top: 2rem;
+                transform: none;
+                right: 0;
+                opacity: 1;
+            }
+            
+            .tech-content, .overview-content {
+                flex-direction: column;
+            }
+            
+            .tech-images {
+                margin-top: 2rem;
+            }
+            
+            .section {
+                min-height: auto;
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="section hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Redes dedicadas y datos en tiempo real: así es el plan de Telecom para digitalizar el agro</h1>
+                <p>La nueva tecnología de realidad virtual de Telecom está transformando la forma en que monitorizamos el campo, ofreciendo soluciones innovadoras para mejorar la productividad y sostenibilidad del sector agrícola.</p>
+            </div>
+            <video class="hero-image" autoplay muted loop controls>
+                <source src="img/Telecom - Expoagro.mp4" type="video/mp4">
+                Tu navegador no soporta videos HTML5.
+            </video>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="section overview">
+        <div class="container overview-content scroll-reveal">
+            <div class="overview-text">
+                <h2>Telecom en Expoagro 2025</h2>
+                <p>Telecom reafirmó su compromiso con el agro en Expoagro 2025, donde exhibió su ecosistema de soluciones tecnológicas orientadas a mejorar la productividad y sostenibilidad del sector. Con una cobertura de conectividad que alcanza el 97% en Pergamino y Rojas, y más de 500 mil hectáreas cubiertas, la compañía continúa expandiendo su red para facilitar la implementación de herramientas digitales en las zonas rurales.</p>
+                <p>La participación de la empresa incluyó un stand interactivo dentro de la "Carpa Telecom AgTech", donde los visitantes pudieron conocer de primera mano las soluciones de conectividad, Internet de las Cosas (IoT), Cloud y ciberseguridad. Además, organizó una charla sobre tecnología aplicada al agro, en la que destacados referentes del sector analizaron las oportunidades que brinda la digitalización para optimizar la producción.</p>
+            </div>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">97%</div>
+                    <div class="stat-label">Cobertura en Pergamino y Rojas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">+500K</div>
+                    <div class="stat-label">Hectáreas cubiertas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">134K</div>
+                    <div class="stat-label">Personas con acceso a internet</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="section technology">
+        <div class="container tech-content scroll-reveal">
+            <div class="tech-text">
+                <h2>Conectividad y tecnología para el agro</h2>
+                <p>Uno de los principales objetivos de Telecom en el sector agroindustrial es ofrecer conectividad en zonas donde las redes tradicionales no llegan. Según explicó Tomás Liceda Rosasco, gerente de Agro IoT de la compañía, el proceso para incorporar estas soluciones comienza con la identificación de las necesidades específicas de cada productor.</p>
+                <p>"Lo primero que hacemos cuando viene un cliente es preguntarle cuál es su actividad, en qué zona del país se encuentra y cuáles son sus principales desafíos. Queremos entender en qué aspectos está siendo poco eficiente o qué le está haciendo perder dinero", explicó.</p>
+                <p>Para determinar la viabilidad de un proyecto, la empresa analiza el polígono del campo, las condiciones geográficas y la disponibilidad de antenas en la región. "Si es necesario instalar una antena desde cero, el proceso puede demorar entre 30 y 60 días, dependiendo de la zona. Luego, el productor ya está conectado y puede comenzar a medir distintos aspectos de su actividad, desde el monitoreo de cultivos hasta la automatización de procesos o la implementación de cámaras de seguridad", detalló Liceda Rosasco.</p>
+            </div>
+            <div class="tech-images">
+                <img src="img/tecnologias.png" alt="Tecnología VR" class="tech-image">
+                <img src="img/monitoreo.jpg" alt="Monitoreo del campo" class="tech-image">
+                <img src="img/soluciones.png" alt="Soluciones IoT" class="tech-image">
+                <img src="img/stand.png" alt="Stand Telecom" class="tech-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section benefits">
+        <div class="container scroll-reveal">
+            <h2>Herramientas digitales para el campo</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-title">Optimización de movilidad</div>
+                    <div class="benefit-desc">Monitoree en tiempo real maquinarias, vehículos y personal dentro del entorno productivo. Facilita la planificación de rutas, reduce tiempos improductivos y mejora la seguridad en el campo.</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-title">Gestión energética</div>
+                    <div class="benefit-desc">Analice el consumo eléctrico al instante e identifique patrones para hacer un uso más eficiente de la energía, reduciendo costos operativos.</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-title">Reducción de consumo</div>
+                    <div class="benefit-desc">Estudios realizados en proyectos similares en Brasil muestran una reducción de hasta 15% en el consumo de combustible y un aumento de productividad del 10%.</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-title">Datos en tiempo real</div>
+                    <div class="benefit-desc">"Sin datos en tiempo real, la digitalización pierde impacto. La conectividad permite tomar decisiones más rápidas y precisas, lo que se traduce en una mayor eficiencia."</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="section video-section">
+        <div class="container scroll-reveal">
+            <h2>Descubre nuestras soluciones AgTech</h2>
+            <div class="video-container">
+                <div class="video-placeholder">
+                    <div class="video-icon">▶</div>
+                    <p>Aquí se mostrará el video explicativo del proyecto</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="section technology">
+        <div class="container tech-content scroll-reveal">
+            <div class="tech-text">
+                <h2>Impacto en las comunidades rurales</h2>
+                <p>El despliegue de infraestructura tecnológica no solo beneficia a los productores, sino también a las comunidades cercanas. El ecosistema AgTech aceleró su crecimiento en los últimos años y es hoy una apuesta fuerte para el desarrollo económico local. En noviembre de 2024 Telecom anunció que finalizó el despliegue de su infraestructura de conectividad en los partidos de Pergamino y Rojas en la provincia de Buenos Aires, en el marco de su plan estratégico de desarrollo del primer cluster de conectividad del ecosistema AgTech.</p>
+                <p>Por ello, también en Pergamino y Rojas, más de 134.000 personas tienen acceso a internet de calidad, impactando en 228 escuelas, 28 centros de salud y en la conectividad de rutas rurales.</p>
+                <p>"La conectividad mejora la educación, la salud y el comercio local. Además, permite que los productores y sus familias tengan acceso a herramientas digitales que antes eran exclusivas de las ciudades", destacó Liceda Rosasco. También subrayó que una mejor infraestructura tecnológica puede potenciar el turismo rural y fortalecer la seguridad vial en zonas alejadas.</p>
+            </div>
+            <div class="tech-images">
+                <img src="/api/placeholder/300/200" alt="Comunidades rurales" class="tech-image">
+                <img src="/api/placeholder/300/200" alt="Escuelas conectadas" class="tech-image">
+                <img src="/api/placeholder/300/200" alt="Centros de salud" class="tech-image">
+                <img src="/api/placeholder/300/200" alt="Rutas rurales" class="tech-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact">
+        <div class="container scroll-reveal">
+            <h2>¿Listo para transformar su campo?</h2>
+            <p>Descubra cómo nuestras soluciones de realidad virtual pueden revolucionar su negocio agrícola y mejorar la productividad de su campo. ¡Contáctenos hoy!</p>
+            <a href="#" class="cta-button">Solicitar información</a>
+        </div>
+    </section>
+
+    <script>
+        // Scroll reveal animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollElements = document.querySelectorAll('.scroll-reveal');
+            
+            const elementInView = (el, scrollOffset = 100) => {
+                const elementTop = el.getBoundingClientRect().top;
+                return (
+                    elementTop <= 
+                    (window.innerHeight || document.documentElement.clientHeight) - scrollOffset
+                );
+            };
+            
+            const displayScrollElement = (element) => {
+                element.classList.add('active');
+            };
+            
+            const hideScrollElement = (element) => {
+                element.classList.remove('active');
+            };
+            
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el, 100)) {
+                        displayScrollElement(el);
+                    } else {
+                        hideScrollElement(el);
+                    }
+                });
+            };
+            
+            window.addEventListener('scroll', () => {
+                handleScrollAnimation();
+            });
+            
+            // Initialize
+            handleScrollAnimation();
+        });
+    </script>
+</body>
+</html>
