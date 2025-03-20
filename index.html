@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         
         :root {
             --telecom-blue: #1a237e;
@@ -46,75 +47,146 @@
             z-index: 2;
         }
         
-        /* Hero Section */
+        /* INICIO DE NUEVO HERO SECTION */
         .hero {
-            background: linear-gradient(135deg, var(--telecom-blue), var(--telecom-purple));
-            color: var(--text-light);
-            overflow: hidden;
             position: relative;
-            padding-top: 4rem;
+            min-height: 100vh;
+            background: rgb(26,35,126);
+            background: linear-gradient(180deg, rgba(26,35,126,1) 0%, rgba(94,53,177,1) 100%);
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            padding: 5rem 2rem;
         }
-        
-        .hero::before {
-            content: "";
+
+        /* Blobs animados para el fondo */
+        .blob {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1" /></svg>') repeat;
-            opacity: 0.2;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.4;
+            z-index: 1;
         }
-        
+
+        .blob-1 {
+            width: 300px;
+            height: 300px;
+            background: #7e7dff;
+            top: -100px;
+            right: -50px;
+            animation: float 25s infinite alternate ease-in-out;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background: #445df7;
+            bottom: -200px;
+            left: -150px;
+            animation: float 30s infinite alternate-reverse ease-in-out;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            50% {
+                transform: translate(50px, 50px) rotate(180deg);
+            }
+            100% {
+                transform: translate(-50px, -50px) rotate(360deg);
+            }
+        }
+
         .hero-content {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            max-width: 900px;
+            gap: 3rem;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
+
+        /* Estilos de vidrio */
+        .glass-card {
+            background: rgba(43, 42, 114, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-text {
+            padding: 3rem;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards 0.4s;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(126, 125, 255, 0.2);
+            border: 1px solid rgba(126, 125, 255, 0.3);
+            border-radius: 30px;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 1.5rem;
-            line-height: 1.1;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s forwards;
         }
-        
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s 0.2s forwards;
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #ffffff, #c4c4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Inter', sans-serif;
+            text-shadow: none;
+            transform: none;
+            animation: none;
+            opacity: 1;
         }
-        
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0;
+            font-family: 'Inter', sans-serif;
+            transform: none;
+            animation: none;
+            opacity: 1;
+        }
+
         /* Carousel Styles */
-        .carousel-container {
-            width: 100%;
+        .carousel-wrapper {
             position: relative;
-            margin: 2rem 0;
+            width: 100%;
             opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s 0.4s forwards;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            overflow: hidden;
+            animation: fadeIn 0.5s ease forwards 0.8s;
+            border-radius: 5px 5px 20px 20px;
         }
-        
+
+        .carousel-container {
+            overflow: hidden; /* Solo bordes inferiores redondeados */
+        }
+
         .carousel {
+            color: white;
             display: flex;
-            width: 100%;
-            height: 500px;
             position: relative;
+            height: 620px;
             overflow: hidden;
-            border-radius: 10px;
         }
-        
+
         .carousel-slide {
             position: absolute;
             top: 0;
@@ -123,135 +195,116 @@
             height: 100%;
             opacity: 0;
             transition: opacity 1s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--telecom-blue);
         }
-        
+
         .carousel-slide.active {
             opacity: 1;
         }
-        
-        .carousel-slide img {
-            height: 100%;
+
+        .carousel-slide img, .carousel-slide video {
             width: 100%;
+            height: 100%;
             object-fit: cover;
         }
-        
-        .carousel-caption {
+
+        .slide-content {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-            color: white;
-            padding: 2rem;
-            text-align: left;
+            padding: 3rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
         }
-        
-        .carousel-caption h3 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
+
+        .slide-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            font-family: 'Inter', sans-serif;
         }
-        
-        .carousel-caption p {
-            font-size: 1.1rem;
+
+        .slide-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
             max-width: 80%;
+            font-family: 'Inter', sans-serif;
         }
-        
-        .carousel-buttons {
+
+        .carousel-controls {
             display: flex;
             justify-content: space-between;
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            transform: translateY(-50%);
-            z-index: 10;
-            padding: 0 1rem;
+            padding: 1.5rem;
         }
-        
-        .carousel-button {
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
+
+        .carousel-nav {
             display: flex;
             align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background 0.3s;
+            gap: 1rem;
         }
-        
-        .carousel-button:hover {
-            background: rgba(0, 0, 0, 0.8);
-        }
-        
-        .carousel-indicators {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            z-index: 10;
-        }
-        
-        .carousel-indicator {
-            width: 12px;
-            height: 12px;
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.3);
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
         }
-        
-        .carousel-indicator.active {
+
+        .carousel-dot.active {
             background: white;
+            transform: scale(1.2);
         }
-        
-        /* Video container */
-        .video-container {
-            width: 100%;
-            max-width: 900px;
-            margin: 2rem 0;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            background-color: #000;
-            aspect-ratio: 16/9;
-            position: relative;
-        }
-        
-        .hero-video {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s 0.4s forwards;
-        }
-        
-        .video-placeholder {
+
+        .carousel-indicators {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            width: 100%;
-            height: 100%;
-            background-color: var(--telecom-blue);
+            gap: 1rem;
+        }
+
+        .carousel-count {
             color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
         }
-        
-        .responsive-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+
+        .carousel-count span {
+            opacity: 0.5;
         }
+
+        .carousel-buttons {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .carousel-button {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .carousel-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        /* FIN DEL NUEVO HERO SECTION */
         
         /* VR Experience Gallery */
         .vr-gallery {
             padding: 5rem 0;
-            background-color: var(--telecom-blue);
+            background: rgb(94,53,177);
+            background: linear-gradient(180deg, rgba(94,53,177,1) 0%, rgba(26,35,126,1) 100%);
             color: white;
         }
         
@@ -706,6 +759,17 @@
             }
         }
         
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
         .scroll-reveal {
             opacity: 0;
             transform: translateY(50px);
@@ -719,8 +783,8 @@
         
         /* Responsive adjustments */
         @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 2.5rem;
+            .hero-title {
+                font-size: 2.3rem;
             }
             
             .section {
@@ -757,15 +821,15 @@
             }
             
             .carousel {
-                height: 300px;
+                height: 350px;
             }
             
-            .carousel-caption h3 {
-                font-size: 1.4rem;
+            .slide-title {
+                font-size: 1.5rem;
             }
             
-            .carousel-caption p {
-                font-size: 1rem;
+            .slide-description {
+                font-size: 0.9rem;
                 max-width: 100%;
             }
             
@@ -797,8 +861,8 @@
         }
         
         @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 2rem;
+            .hero-title {
+                font-size: 1.8rem;
             }
             
             .vr-image-grid {
@@ -811,58 +875,85 @@
             }
             
             .carousel {
-                height: 250px;
+                height: 300px;
+            }
+            
+            .hero-text {
+                padding: 1.5rem;
+            }
+            
+            .slide-content {
+                padding: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
     <!-- Hero Section -->
     <section class="section hero">
+        
+        
         <div class="container">
             <div class="hero-content">
-                <h1>Redes dedicadas y datos en tiempo real: así es el plan de Telecom para digitalizar el agro</h1>
-                <p>La nueva tecnología de realidad virtual de Telecom está transformando la forma en que monitorizamos el campo, ofreciendo soluciones innovadoras para mejorar la productividad y sostenibilidad del sector agrícola.</p>
+                <div class="hero-text glass-card">
+                    <div class="hero-badge">Innovación Tecnológica</div>
+                    <h1 class="hero-title">Redes dedicadas y datos en tiempo real: así es el plan de Telecom para digitalizar el agro</h1>
+                    <p class="hero-subtitle">La nueva tecnología de realidad virtual de Telecom está transformando la forma en que monitorizamos el campo, ofreciendo soluciones innovadoras para mejorar la productividad y sostenibilidad del sector agrícola.</p>
+                </div>
                 
-                <!-- Carousel replaces the single video -->
-                <div class="carousel-container">
-                    <div class="carousel">
-                        <div class="carousel-slide active">
-                            <img src="img/EXPO AGRO-66.jpg" alt="VR para agricultura 1">
-                            <div class="carousel-caption">
-                                <h3>Transformando el agro con realidad virtual</h3>
-                                <p>Los lentes VR permiten monitorear cultivos y analizar datos en tiempo real</p>
+                <div class="carousel-wrapper glass-card">
+                    <div class="carousel-container">
+                        <div class="carousel">
+
+                            <div class="carousel-slide active">
+                                <video src="video/Telecom - Expoagro - 30sec.mp4" controls preload="metadata" class="responsive-video" autoplay muted loop>
+                                    Su navegador no soporta la reproducción de videos.
+                                </video>
                             </div>
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="img/11032025-_DSC9355.jpg" alt="VR para agricultura 2">
-                            <div class="carousel-caption">
-                                <h3>Monitoreo de precisión</h3>
-                                <p>Visualización detallada del estado de los cultivos mediante realidad virtual</p>
+
+                            <div class="carousel-slide">
+                                <img src="img/11032025-_DSC9355.jpg" alt="VR para agricultura 2">
+                                <div class="slide-content">
+                                    <h2 class="slide-title">Monitoreo de precisión</h2>
+                                    <p class="slide-description">Visualización detallada del estado de los cultivos mediante realidad virtual</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="img/usuario2.jpg" alt="VR para agricultura 3">
-                            <div class="carousel-caption">
-                                <h3>Capacitación inmersiva</h3>
-                                <p>Entrenamiento virtual para productores que optimiza procesos y reduce costos</p>
+
+                            <div class="carousel-slide">
+                                <img src="img/usuario2.jpg" alt="VR para agricultura 3">
+                                <div class="slide-content">
+                                    <h2 class="slide-title">Capacitación inmersiva</h2>
+                                    <p class="slide-description">Entrenamiento virtual para productores que optimiza procesos y reduce costos</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="carousel-slide">
-                            <video src="video/Telecom - Expoagro - 30sec.mp4" controls preload="metadata" class="responsive-video" muted autoplay loop>
-                                Su navegador no soporta la reproducción de videos.
-                            </video>
+
+                            <div class="carousel-slide">
+                                <img src="img/EXPO AGRO-66.jpg" alt="VR para agricultura 1">
+                                <div class="slide-content">
+                                    <h2 class="slide-title">Transformando el agro con realidad virtual</h2>
+                                    <p class="slide-description">Los lentes VR permiten monitorear cultivos y analizar datos en tiempo real</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="carousel-buttons">
-                        <button class="carousel-button prev-button"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-button next-button"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                    <div class="carousel-indicators">
-                        <div class="carousel-indicator active" data-slide="0"></div>
-                        <div class="carousel-indicator" data-slide="1"></div>
-                        <div class="carousel-indicator" data-slide="2"></div>
-                        <div class="carousel-indicator" data-slide="3"></div>
+                    
+                    <div class="carousel-controls">
+                        <div class="carousel-nav">
+                            <div class="carousel-dot active"></div>
+                            <div class="carousel-dot"></div>
+                            <div class="carousel-dot"></div>
+                            <div class="carousel-dot"></div>
+                        </div>
+                        
+                        <div class="carousel-indicators">
+                            <div class="carousel-count">01 <span>/ 04</span></div>
+                            <div class="carousel-buttons">
+                                <button class="carousel-button prev-button"><i class="fas fa-chevron-left"></i></button>
+                                <button class="carousel-button next-button"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1053,53 +1144,94 @@
             // Initialize
             handleScrollAnimation();
             
-            // Carousel Functionality
-            const carousel = document.querySelector('.carousel');
-            const slides = document.querySelectorAll('.carousel-slide');
-            const indicators = document.querySelectorAll('.carousel-indicator');
-            const prevButton = document.querySelector('.prev-button');
-            const nextButton = document.querySelector('.next-button');
-            
-            let currentSlide = 0;
-            const slideCount = slides.length;
-            
-            const showSlide = (index) => {
-                slides.forEach(slide => slide.classList.remove('active'));
-                indicators.forEach(indicator => indicator.classList.remove('active'));
-                
-                slides[index].classList.add('active');
-                indicators[index].classList.add('active');
-                currentSlide = index;
-            };
-            
-            const nextSlide = () => {
-                showSlide((currentSlide + 1) % slideCount);
-            };
-            
-            const prevSlide = () => {
-                showSlide((currentSlide - 1 + slideCount) % slideCount);
-            };
-            
-            // Event listeners
-            nextButton.addEventListener('click', nextSlide);
-            prevButton.addEventListener('click', prevSlide);
-            
-            indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => {
-                    showSlide(index);
-                });
-            });
-            
-            // Auto slide change
-            let slideInterval = setInterval(nextSlide, 5000);
-            
-            carousel.addEventListener('mouseenter', () => {
-                clearInterval(slideInterval);
-            });
-            
-            carousel.addEventListener('mouseleave', () => {
-                slideInterval = setInterval(nextSlide, 5000);
-            });
+// Reemplaza solo esta parte específica dentro del bloque "document.addEventListener('DOMContentLoaded', function() {"
+// Busca la sección del carousel en tu JavaScript y reemplaza desde "Carousel Functionality" hasta antes de "Lightbox functionality"
+
+// Carousel Functionality - Actualizado para avance manual
+const carousel = document.querySelector('.carousel');
+const slides = document.querySelectorAll('.carousel-slide');
+const dots = document.querySelectorAll('.carousel-dot');
+const prevButton = document.querySelector('.prev-button');
+const nextButton = document.querySelector('.next-button');
+const currentCount = document.querySelector('.carousel-count');
+
+let currentSlide = 0;
+const slideCount = slides.length;
+
+// Mostrar slide actual
+const showSlide = (index) => {
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+    
+    slides[index].classList.add('active');
+    dots[index].classList.add('active');
+    
+    // Actualizar contador
+    currentCount.innerHTML = `0${index + 1} <span>/ 0${slideCount}</span>`;
+    
+    currentSlide = index;
+    
+    // Pausar todos los videos cuando cambiamos de slide
+    slides.forEach(slide => {
+        const video = slide.querySelector('video');
+        if (video) {
+            video.pause();
+        }
+    });
+    
+    // Reproducir video si está en el slide actual
+    const currentVideo = slides[index].querySelector('video');
+    if (currentVideo) {
+        currentVideo.play();
+    }
+};
+
+// Siguiente slide
+const nextSlide = () => {
+    showSlide((currentSlide + 1) % slideCount);
+};
+
+// Slide anterior
+const prevSlide = () => {
+    showSlide((currentSlide - 1 + slideCount) % slideCount);
+};
+
+// Event listeners para botones
+nextButton.addEventListener('click', nextSlide);
+prevButton.addEventListener('click', prevSlide);
+
+// Navegación con los puntos
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        showSlide(index);
+    });
+});
+
+// Soporte para dispositivos táctiles
+let touchStartX = 0;
+let touchEndX = 0;
+
+carousel.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+});
+
+carousel.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].clientX;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    const swipeThreshold = 50;
+    if (touchEndX < touchStartX - swipeThreshold) {
+        nextSlide();
+    }
+    if (touchEndX > touchStartX + swipeThreshold) {
+        prevSlide();
+    }
+}
+
+// Inicializar contador
+currentCount.innerHTML = `01 <span>/ 0${slideCount}</span>`;
             
             // Lightbox functionality
             const lightbox = document.querySelector('.lightbox');
