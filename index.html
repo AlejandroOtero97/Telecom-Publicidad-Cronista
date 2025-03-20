@@ -153,8 +153,8 @@
         
         .carousel-container {
             position: relative;
-            width: 1200px;
-            max-width: 90%;
+            width: 1600px;
+            max-width: 100%;
             margin: 0 auto;
         }
         
@@ -597,75 +597,72 @@
         }
         
         @media (max-width: 576px) {
+            .carousel-section {
+                overflow-x: hidden;  /* evita scroll lateral */
+            }
             .carousel-container {
-                padding: 0px;
+                padding: 0;
                 margin: 0 auto;  /* centrado */
-                width: auto;
+                width: 100%;     /* forzar uso total del ancho */
+                max-width: 100%;
                 height: auto;
             }
-
             .hero-text-container {
                 width: 100%;
                 padding: 1.5rem;
             }
-            
             .hero-title {
                 font-size: 1.8rem;
             }
-            
             .hero-text {
                 padding: 1.5rem;
             }
-            
             .carousel-section {
                 padding: 3rem 0;
             }
-            
             .carousel-main {
                 width: 100%;
-                height: auto;  /* se elimina aspect-ratio */
+                height: 300px;  /* altura fija para uniformidad */
                 margin-bottom: 10px;
             }
-            
             .carousel-slide img {
                 width: 100%;
-                height: auto;
+                height: 100%;  /* asegurar que la imagen ocupe toda la altura del contenedor */
                 object-fit: cover;
             }
-            
             .carousel-thumbnails {
                 height: 60px;
                 gap: 5px;
             }
-            
             .carousel-thumbnail {
                 width: 60px;
                 height: 45px;
                 border-width: 2px;
             }
-            
             .carousel-slide-title {
                 font-size: 1.5rem;
             }
-            
             .carousel-button {
                 width: 40px;
                 height: 40px;
                 font-size: 1rem;
             }
-            
             .split-image {
                 height: 250px;
             }
-            
             .stat-item {
                 min-width: 100%;
                 margin-bottom: 1rem;
             }
-
             /* Ocultar el contenido textual del carousel en mobile */
             .carousel-slide-content {
                 display: none;
+            }
+            /* Forzar centrado de la sección en mobile */
+            .carousel-container {
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
             }
         }
     </style>
