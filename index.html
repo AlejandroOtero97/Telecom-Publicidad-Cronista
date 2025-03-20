@@ -494,11 +494,46 @@
             transform: translateY(0);
         }
         
+        /* Video Section */
+        .video-section {
+            padding: 6rem 0;
+            min-height: auto;
+            background: linear-gradient(135deg, var(--telecom-blue), var(--telecom-purple));
+        }
+        
+        .video-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: white;
+            text-shadow: #212121 2px 2px 5px;
+        }
+        
+        .video-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.664);
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .video-container video {
+            display: block;
+            width: 100%;
+            height: auto;
+            vertical-align: middle;
+        }
+        
         /* Responsive adjustments */
         @media (max-width: 1200px) {
             .carousel-container {
                 max-width: 95%;
                 width: 1000px;
+            }
+            
+            .video-container {
+                max-width: 90%;
             }
         }
         
@@ -543,6 +578,10 @@
             .carousel-thumbnail {
                 width: 100px;
                 height: 70px;
+            }
+            
+            .video-section {
+                padding: 4rem 0;
             }
         }
         
@@ -593,6 +632,15 @@
             .benefits-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
+            }
+            
+            .video-section {
+                padding: 3rem 0;
+            }
+            
+            .video-section h2 {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
             }
         }
         
@@ -663,6 +711,14 @@
                 margin-left: auto;
                 margin-right: auto;
                 text-align: center;
+            }
+            
+            .video-container {
+                border-radius: 8px;
+            }
+            
+            .video-section h2 {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -777,6 +833,19 @@
         </div>
         <div class="split-image">
             <img src="img/stand.png" alt="Stand de Telecom en Expoagro">
+        </div>
+    </section>
+    
+    <!-- Video Section - NUEVA SECCIÓN -->
+    <section class="section video-section">
+        <div class="container scroll-reveal">
+            <h2>Tecnología AgTech VR en acción</h2>
+            <div class="video-container">
+                <video width="100%" controls>
+                    <source src="video/Telecom - Expoagro - 30sec.mp4" type="video/mp4">
+                    Su navegador no soporta videos HTML5.
+                </video>
+            </div>
         </div>
     </section>
 
