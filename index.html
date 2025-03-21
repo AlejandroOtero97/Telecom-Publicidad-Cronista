@@ -608,7 +608,43 @@
             }
         }
         
+        /* Optimizaciones para móvil */
         @media (max-width: 768px) {
+            /* Desactivar todas las transiciones en móvil */
+            * {
+                transition: none !important;
+                animation: none !important;
+            }
+            
+            /* Desactivar las animaciones de scroll-reveal */
+            .scroll-reveal {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            
+            /* Configuración para la sección de video */
+            .video-section {
+                height: auto !important;
+                min-height: auto !important;
+                padding-top: 4rem !important; 
+                padding-bottom: 4rem !important;
+                align-items: normal;
+            }
+            
+            .video-section .container {
+                padding: 0 1rem;
+            }
+            
+            .video-section h2 {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .video-container {
+                margin: 0 auto;
+            }
+            
+            /* Otras optimizaciones para móvil */
             .carousel-container {
                 max-width: 85%;
                 width: 650px;
@@ -619,10 +655,16 @@
                 padding: 2rem;
             }
             
-            .section, .hero, .benefits, .video-section, .contact {
+            .section, .hero, .benefits, .contact {
                 height: auto;
                 min-height: 100vh;
-                padding: 3rem 1rem;
+                padding: 2.5rem 1rem;
+            }
+            
+            .carousel-section {
+                padding: 2.5rem 0;
+                height: auto;
+                min-height: 100vh;
             }
             
             .carousel-main {
@@ -642,7 +684,7 @@
             }
             
             .split-text {
-                padding: 3rem 1.5rem;
+                padding: 2.5rem 1.5rem;
             }
             
             .split-image {
@@ -657,21 +699,16 @@
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
-            
-            .video-section {
-                padding: 3rem 0;
-            }
-            
-            .video-section h2 {
-                font-size: 2rem;
-                margin-bottom: 1.5rem;
-            }
         }
         
         @media (max-width: 576px) {
+            /* Optimizaciones adicionales para pantallas muy pequeñas */
             .carousel-section {
                 overflow-x: hidden;
+                padding: 2rem 0;
+                height: auto !important;
             }
+            
             .carousel-container {
                 padding: 0;
                 margin: 0 auto;
@@ -679,68 +716,96 @@
                 max-width: 100%;
                 height: auto;
             }
+            
             .hero-text-container {
                 width: 100%;
                 padding: 1.5rem;
             }
+            
             .hero-title {
                 font-size: 1.8rem;
             }
+            
             .hero-text {
                 padding: 1.5rem;
             }
-            .carousel-section {
-                padding: 3rem 0;
-            }
+            
             .carousel-main {
                 width: 100%;
-                height: 300px;
+                height: 250px;
                 margin-bottom: 10px;
+                transform: none;
             }
+            
             .carousel-slide img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
             }
+            
             .carousel-thumbnails {
                 height: 60px;
                 gap: 5px;
             }
+            
             .carousel-thumbnail {
                 width: 60px;
                 height: 45px;
                 border-width: 2px;
             }
+            
             .carousel-slide-title {
                 font-size: 1.5rem;
             }
+            
             .carousel-button {
                 width: 40px;
                 height: 40px;
                 font-size: 1rem;
             }
+            
             .split-image {
                 height: 250px;
             }
+            
             .stat-item {
                 min-width: 100%;
                 margin-bottom: 1rem;
             }
+            
             .carousel-slide-content {
                 display: none;
             }
-            .carousel-container {
-                margin-left: auto;
-                margin-right: auto;
-                text-align: center;
+            
+            .video-section h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
             }
             
             .video-container {
                 border-radius: 8px;
             }
             
-            .video-section h2 {
-                font-size: 1.8rem;
+            /* Reducir espaciado */
+            .section {
+                padding: 2rem 1rem;
+            }
+            
+            h2 {
+                margin-bottom: 1.25rem;
+            }
+            
+            .benefits h2 {
+                margin-bottom: 1.5rem;
+            }
+            
+            .benefit-card {
+                padding: 1.25rem;
+            }
+            
+            /* Mejora específica para el carrusel en móvil */
+            .carousel-slide {
+                transition: none;
             }
         }
     </style>
@@ -932,44 +997,55 @@
     </section>
 
     <script>
-        // Scroll reveal animation
+        // Scroll reveal animation - optimizado para rendimiento
         document.addEventListener('DOMContentLoaded', function() {
             const scrollElements = document.querySelectorAll('.scroll-reveal');
+            const isMobile = window.innerWidth <= 768;
             
-            const elementInView = (el, scrollOffset = 100) => {
-                const elementTop = el.getBoundingClientRect().top;
-                return (
-                    elementTop <= 
-                    (window.innerHeight || document.documentElement.clientHeight) - scrollOffset
-                );
-            };
-            
-            const displayScrollElement = (element) => {
-                element.classList.add('active');
-            };
-            
-            const hideScrollElement = (element) => {
-                element.classList.remove('active');
-            };
-            
-            const handleScrollAnimation = () => {
-                scrollElements.forEach((el) => {
-                    if (elementInView(el, 100)) {
-                        displayScrollElement(el);
-                    } else {
-                        hideScrollElement(el);
+            // En móviles, simplemente mostramos todos los elementos sin animación
+            if (isMobile) {
+                scrollElements.forEach(el => {
+                    el.classList.add('active');
+                });
+            } else {
+                // En desktop, usamos la animación normal
+                const elementInView = (el, scrollOffset = 100) => {
+                    const elementTop = el.getBoundingClientRect().top;
+                    return (
+                        elementTop <= 
+                        (window.innerHeight || document.documentElement.clientHeight) - scrollOffset
+                    );
+                };
+                
+                const displayScrollElement = (element) => {
+                    element.classList.add('active');
+                };
+                
+                const handleScrollAnimation = () => {
+                    scrollElements.forEach((el) => {
+                        if (elementInView(el, 100)) {
+                            displayScrollElement(el);
+                        }
+                    });
+                };
+                
+                // Usamos requestAnimationFrame para mejor rendimiento en el scroll
+                let ticking = false;
+                window.addEventListener('scroll', () => {
+                    if (!ticking) {
+                        window.requestAnimationFrame(() => {
+                            handleScrollAnimation();
+                            ticking = false;
+                        });
+                        ticking = true;
                     }
                 });
-            };
-            
-            window.addEventListener('scroll', () => {
+                
+                // Initialize
                 handleScrollAnimation();
-            });
+            }
             
-            // Initialize
-            handleScrollAnimation();
-            
-            // Nuevo carousel con miniaturas
+            // Carousel optimizado
             const slides = document.querySelectorAll('.carousel-slide');
             const thumbnails = document.querySelectorAll('.carousel-thumbnail');
             const prevButton = document.querySelector('.prev-button');
@@ -1011,8 +1087,8 @@
             }
             
             // Add event listeners
-            nextButton.addEventListener('click', nextSlide);
-            prevButton.addEventListener('click', prevSlide);
+            if (prevButton) prevButton.addEventListener('click', nextSlide);
+            if (nextButton) nextButton.addEventListener('click', prevSlide);
             
             // Add event listeners to thumbnails
             thumbnails.forEach(thumbnail => {
@@ -1022,42 +1098,33 @@
                 });
             });
             
-            // Key navigation
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowRight') {
-                    nextSlide();
-                } else if (e.key === 'ArrowLeft') {
-                    prevSlide();
-                }
-            });
-            
             // Swipe functionality for touch devices
             let touchStartX = 0;
             let touchEndX = 0;
             
             const carouselMain = document.querySelector('.carousel-main');
             
-            carouselMain.addEventListener('touchstart', (e) => {
-                touchStartX = e.touches[0].clientX;
-            });
-            
-            carouselMain.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].clientX;
-                handleSwipe();
-            });
-            
-            function handleSwipe() {
-                const swipeThreshold = 50;
-                if (touchEndX < touchStartX - swipeThreshold) {
-                    nextSlide();
-                }
-                if (touchEndX > touchStartX + swipeThreshold) {
-                    prevSlide();
-                }
+            if (carouselMain) {
+                carouselMain.addEventListener('touchstart', (e) => {
+                    touchStartX = e.touches[0].clientX;
+                });
+                
+                carouselMain.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].clientX;
+                    const swipeThreshold = 50;
+                    if (touchEndX < touchStartX - swipeThreshold) {
+                        nextSlide();
+                    }
+                    if (touchEndX > touchStartX + swipeThreshold) {
+                        prevSlide();
+                    }
+                });
             }
             
-            // Auto-avance del carousel cada 5 segundos
-            setInterval(nextSlide, 5000);
+            // Auto-avance del carousel solo en desktop, no en móvil (para ahorrar recursos)
+            if (!isMobile) {
+                setInterval(nextSlide, 5000);
+            }
         });
     </script>
 </body>
