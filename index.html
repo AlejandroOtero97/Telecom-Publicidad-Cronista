@@ -60,19 +60,6 @@
             padding: 0;
         }
         
-        /* Fallback para el fondo del hero por si no carga la imagen */
-        .hero-fallback {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--telecom-blue), var(--telecom-purple));
-            z-index: 0;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
         .hero::before {
             content: "";
             position: absolute;
@@ -203,7 +190,6 @@
             opacity: 0;
             transition: opacity 0.5s ease;
             z-index: 1;
-            background-color: #1a237e; /* Color de fondo fallback */
         }
         
         .carousel-slide.active {
@@ -289,7 +275,6 @@
             transition: all 0.3s ease;
             opacity: 0.6;
             overflow: hidden;
-            background-color: #4051b5; /* Color de fondo fallback */
         }
         
         .carousel-thumbnail img {
@@ -304,6 +289,7 @@
             transform: scale(1.05);
         }
         
+        /* Verde horizontal abajo de la miniatura activa */
         .carousel-thumbnail.active::after {
             content: "";
             position: absolute;
@@ -337,7 +323,6 @@
             width: 50%;
             overflow: hidden;
             position: relative;
-            background-color: #f0f0f0; /* Color de fondo fallback */
         }
         
         .split-image img {
@@ -554,48 +539,6 @@
             height: auto;
             vertical-align: middle;
         }
-
-        /* Nuevo: Fallback para video en caso de problemas de carga */
-        .video-fallback {
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .video-fallback h3 {
-            margin-bottom: 10px;
-            font-size: 1.5rem;
-        }
-
-        .video-fallback p {
-            font-size: 1rem;
-            max-width: 80%;
-        }
-
-        /* Mensaje de carga de imágenes */
-        .image-loading-message {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            z-index: 9999;
-            font-size: 14px;
-        }
         
         /* Responsive adjustments */
         @media (max-width: 1200px) {
@@ -803,12 +746,8 @@
     </style>
 </head>
 <body>
-    <!-- Mensaje de carga para depuración -->
-    <div id="loadingMessage" class="image-loading-message">Cargando recursos...</div>
-
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-fallback" id="heroFallback"></div>
         <div class="hero-content">
             <div class="hero-text-container">
                 <div class="hero-text">
@@ -831,35 +770,35 @@
                 <div class="carousel-main">
                     <div class="carousel-slides" id="carouselSlides">
                         <div class="carousel-slide active">
-                            <img src="webp/monitoreo.webp" alt="Lentes VR de última generación" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#1a237e';">
+                            <img src="webp/monitoreo.webp" alt="Lentes VR de última generación">
                             <div class="carousel-slide-content">
                                 <h3 class="carousel-slide-title">Lentes VR de última generación</h3>
                                 <p class="carousel-slide-desc">Nuestros dispositivos de realidad virtual ofrecen una experiencia inmersiva para monitorear y analizar datos del campo en tiempo real.</p>
                             </div>
                         </div>
                         <div class="carousel-slide">
-                            <img src="webp/11032025-_DSC9325.webp" alt="Agricultor usando VR" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#1a237e';">
+                            <img src="webp/11032025-_DSC9325.webp" alt="Agricultor usando VR">
                             <div class="carousel-slide-content">
                                 <h3 class="carousel-slide-title">Adopción tecnológica</h3>
                                 <p class="carousel-slide-desc">Productores agrícolas adoptando la tecnología VR en sus operaciones diarias.</p>
                             </div>
                         </div>
                         <div class="carousel-slide">
-                            <img src="webp/Telecom - Horizontal.00_01_41_23.Imagen fija004.webp" alt="Datos en tiempo real" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#1a237e';">
+                            <img src="webp/Telecom - Horizontal.00_01_41_23.Imagen fija004.webp" alt="Datos en tiempo real">
                             <div class="carousel-slide-content">
                                 <h3 class="carousel-slide-title">Análisis de datos</h3>
                                 <p class="carousel-slide-desc">Visualización de datos en tiempo real para tomar decisiones inmediatas.</p>
                             </div>
                         </div>
                         <div class="carousel-slide">
-                            <img src="webp/portada.webp" alt="Stand Telecom Expoagro" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#1a237e';">
+                            <img src="webp/portada.webp" alt="Stand Telecom Expoagro">
                             <div class="carousel-slide-content">
                                 <h3 class="carousel-slide-title">Telecom en Expoagro 2025</h3>
                                 <p class="carousel-slide-desc">Nuestra presencia en la feria agrícola más importante de Argentina.</p>
                             </div>
                         </div>
                         <div class="carousel-slide">
-                            <img src="webp/soluciones.webp" alt="Demostración tecnológica" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#1a237e';">
+                            <img src="webp/soluciones.webp" alt="Demostración tecnológica">
                             <div class="carousel-slide-content">
                                 <h3 class="carousel-slide-title">Demostración tecnológica</h3>
                                 <p class="carousel-slide-desc">Visitantes experimentando la tecnología VR durante Expoagro 2025.</p>
@@ -874,19 +813,19 @@
                 
                 <div class="carousel-thumbnails" id="carouselThumbnails">
                     <div class="carousel-thumbnail active" data-index="0">
-                        <img src="webp/monitoreo.webp" alt="Thumbnail 1" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#4051b5';">
+                        <img src="webp/monitoreo.webp" alt="Thumbnail 1">
                     </div>
                     <div class="carousel-thumbnail" data-index="1">
-                        <img src="webp/11032025-_DSC9325.webp" alt="Thumbnail 2" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#4051b5';">
+                        <img src="webp/11032025-_DSC9325.webp" alt="Thumbnail 2">
                     </div>
                     <div class="carousel-thumbnail" data-index="2">
-                        <img src="webp/Telecom - Horizontal.00_01_41_23.Imagen fija004.webp" alt="Thumbnail 3" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#4051b5';">
+                        <img src="webp/Telecom - Horizontal.00_01_41_23.Imagen fija004.webp" alt="Thumbnail 3">
                     </div>
                     <div class="carousel-thumbnail" data-index="3">
-                        <img src="webp/portada.webp" alt="Thumbnail 4" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#4051b5';">
+                        <img src="webp/portada.webp" alt="Thumbnail 4">
                     </div>
                     <div class="carousel-thumbnail" data-index="4">
-                        <img src="webp/soluciones.webp" alt="Thumbnail 5" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#4051b5';">
+                        <img src="webp/soluciones.webp" alt="Thumbnail 5">
                     </div>
                 </div>
             </div>
@@ -915,7 +854,7 @@
             </div>
         </div>
         <div class="split-image">
-            <img src="webp/EXPO AGRO-66.webp" alt="Stand de Telecom en Expoagro" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#f0f0f0';">
+            <img src="webp/EXPO AGRO-66.webp" alt="Stand de Telecom en Expoagro">
         </div>
     </section>
     
@@ -924,14 +863,10 @@
         <div class="container scroll-reveal">
             <h2>Tecnología AgTech VR en acción</h2>
             <div class="video-container">
-                <video id="mainVideo" width="100%" controls poster="/webp/video-poster.webp" preload="metadata">
-                    <source src="/video/Telecom - Expoagro - 30sec.mp4" type="video/mp4">
+                <video width="100%" controls poster="webp/portada.webp">
+                    <source src="video/Telecom - Expoagro - 30sec.mp4" type="video/mp4">
                     Su navegador no soporta videos HTML5.
                 </video>
-                <div id="videoFallback" class="video-fallback">
-                    <h3>Video no disponible</h3>
-                    <p>No se ha podido cargar el video "Tecnología AgTech VR en acción". Por favor, intente más tarde o verifique su conexión a internet.</p>
-                </div>
             </div>
         </div>
     </section>
@@ -945,7 +880,7 @@
             <p>Para determinar la viabilidad de un proyecto, la empresa analiza el polígono del campo, las condiciones geográficas y la disponibilidad de antenas en la región.</p>
         </div>
         <div class="split-image">
-            <img src="webp/usuario1.webp" alt="Usuario explorando la tecnología VR" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#121b53';">
+            <img src="webp/usuario1.webp" alt="Usuario explorando la tecnología VR">
         </div>
     </section>
 
@@ -983,7 +918,7 @@
             <p>Por ello, también en Pergamino y Rojas, más de 134.000 personas tienen acceso a internet de calidad, impactando en 228 escuelas, 28 centros de salud y en la conectividad de rutas rurales.</p>
         </div>
         <div class="split-image">
-            <img src="webp/usuario2.webp" alt="Usuario con lentes VR" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#f0f0f0';">
+            <img src="webp/usuario2.webp" alt="Usuario con lentes VR">
         </div>
     </section>
 
@@ -997,90 +932,6 @@
     </section>
 
     <script>
-        // Variables para controlar estados de carga
-        let imagesLoaded = 0;
-        let totalImages = document.querySelectorAll('img').length;
-        let loadingMessageShown = false;
-        let loadingTimeout;
-        const loadingMessage = document.getElementById('loadingMessage');
-
-        // Función para mostrar mensaje de carga
-        function showLoadingMessage(message) {
-            loadingMessage.textContent = message;
-            loadingMessage.style.display = 'block';
-            loadingMessageShown = true;
-            
-            // Ocultar el mensaje después de 5 segundos
-            clearTimeout(loadingTimeout);
-            loadingTimeout = setTimeout(() => {
-                loadingMessage.style.display = 'none';
-                loadingMessageShown = false;
-            }, 5000);
-        }
-
-        // Verificar si la imagen del Hero carga correctamente
-        const heroSection = document.querySelector('.hero');
-        const heroFallback = document.getElementById('heroFallback');
-        
-        // Comprobamos si la imagen de fondo del hero carga
-        if (heroSection) {
-            const testImage = new Image();
-            testImage.onload = function() {
-                // La imagen cargó correctamente
-                console.log("Imagen de hero cargada correctamente");
-            };
-            testImage.onerror = function() {
-                // La imagen no cargó, mostrar el fallback
-                console.log("Error al cargar la imagen de hero");
-                heroFallback.style.opacity = 1;
-                showLoadingMessage("Algunas imágenes no pudieron cargarse correctamente.");
-            };
-            // Obtenemos la URL de la imagen de fondo
-            const heroBackgroundUrl = window.getComputedStyle(heroSection).backgroundImage.replace(/url\(['"]?([^'"]*)['"]?\)/gi, '$1');
-            testImage.src = heroBackgroundUrl;
-        }
-
-        // Verificar si el video carga correctamente
-        const mainVideo = document.getElementById('mainVideo');
-        const videoFallback = document.getElementById('videoFallback');
-        
-        if (mainVideo) {
-            mainVideo.addEventListener('error', function() {
-                console.log("Error al cargar el video");
-                videoFallback.style.display = 'flex';
-                mainVideo.style.display = 'none';
-                showLoadingMessage("El video no pudo cargarse correctamente.");
-            });
-            
-            // Verificar si el video está listo
-            mainVideo.addEventListener('canplay', function() {
-                console.log("Video listo para reproducirse");
-                videoFallback.style.display = 'none';
-            });
-        }
-
-        // Verificar todas las imágenes
-        document.addEventListener('DOMContentLoaded', function() {
-            const allImages = document.querySelectorAll('img');
-            
-            allImages.forEach(img => {
-                if (img.complete) {
-                    imagesLoaded++;
-                } else {
-                    img.addEventListener('load', function() {
-                        imagesLoaded++;
-                        // console.log(`Imagen cargada ${imagesLoaded}/${totalImages}`);
-                    });
-                    
-                    img.addEventListener('error', function() {
-                        imagesLoaded++;
-                        console.log(`Error al cargar imagen: ${this.src}`);
-                        showLoadingMessage("Algunas imágenes no pudieron cargarse correctamente.");
-                    });
-                }
-            });
-        });
-
         // Scroll reveal animation
         document.addEventListener('DOMContentLoaded', function() {
             const scrollElements = document.querySelectorAll('.scroll-reveal');
@@ -1160,8 +1011,8 @@
             }
             
             // Add event listeners
-            if (nextButton) nextButton.addEventListener('click', nextSlide);
-            if (prevButton) prevButton.addEventListener('click', prevSlide);
+            nextButton.addEventListener('click', nextSlide);
+            prevButton.addEventListener('click', prevSlide);
             
             // Add event listeners to thumbnails
             thumbnails.forEach(thumbnail => {
@@ -1186,16 +1037,14 @@
             
             const carouselMain = document.querySelector('.carousel-main');
             
-            if (carouselMain) {
-                carouselMain.addEventListener('touchstart', (e) => {
-                    touchStartX = e.touches[0].clientX;
-                });
-                
-                carouselMain.addEventListener('touchend', (e) => {
-                    touchEndX = e.changedTouches[0].clientX;
-                    handleSwipe();
-                });
-            }
+            carouselMain.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+            });
+            
+            carouselMain.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].clientX;
+                handleSwipe();
+            });
             
             function handleSwipe() {
                 const swipeThreshold = 50;
@@ -1206,31 +1055,10 @@
                     prevSlide();
                 }
             }
-
+            
             // Auto-avance del carousel cada 5 segundos
             setInterval(nextSlide, 5000);
         });
-
-        // Función para crear fallbacks de imagen estático por si se carga desde caché
-        function checkImagesOnLoad() {
-            // Verificamos todas las imágenes después de que la página ha cargado
-            const allImages = document.querySelectorAll('img');
-            allImages.forEach(img => {
-                if (!img.complete || img.naturalHeight === 0) {
-                    // Si la imagen no se ha cargado, ocultarla y mostrar el color de fondo
-                    img.style.display = 'none';
-                    img.parentNode.style.backgroundColor = img.parentNode.classList.contains('carousel-thumbnail') 
-                        ? '#4051b5' : img.parentNode.classList.contains('carousel-slide') 
-                        ? '#1a237e' : '#f0f0f0';
-                }
-            });
-        }
-        
-        // Agregar evento onload para verificar las imágenes cuando la página cargue completamente
-        window.addEventListener('load', checkImagesOnLoad);
-
-        // Verificar la carga correcta de las imágenes después de 3 segundos (tiempo para permitir descargas lentas)
-        setTimeout(checkImagesOnLoad, 3000);
     </script>
 </body>
 </html>
