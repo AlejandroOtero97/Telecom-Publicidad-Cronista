@@ -33,11 +33,12 @@
         
         .section {
             padding: 3rem 2rem;
-            height: 100vh;
+            min-height: 90vh; /* Cambio a min-height para mejor adaptabilidad */
             display: flex;
             flex-direction: column;
             justify-content: center;
             position: relative;
+            overflow: hidden; /* Evitar desbordamiento */
         }
         
         .container {
@@ -45,19 +46,20 @@
             margin: 0 auto;
             position: relative;
             z-index: 2;
+            width: 100%; /* Garantizar que ocupe el 100% del contenedor padre */
         }
         
         /* NUEVO HERO SECTION */
         .hero {
             position: relative;
-            height: 100vh;
+            height: 90vh;
             background-image: url('webp/11032025-_DSC9355.webp');
             background-size: cover;
             background-position: center;
             display: flex;
             align-items: center;
             overflow: hidden;
-            padding: 0;
+            padding: 2rem 0; /* Padding vertical mínimo */
         }
         
         .hero::before {
@@ -77,11 +79,12 @@
             z-index: 2;
             width: 100%;
             height: 100%;
+            padding: 1rem; /* Padding interior mínimo */
         }
 
         .hero-text-container {
             width: 50%;
-            padding: 3rem;
+            padding: 2rem; /* Reducido para resoluciones intermedias */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -91,7 +94,7 @@
             backdrop-filter: blur(10px);
             background: rgba(26, 35, 126, 0.3);
             border-radius: 20px;
-            padding: 2.5rem;
+            padding: 2rem; /* Reducido para resoluciones intermedias */
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
@@ -132,9 +135,10 @@
             background: linear-gradient(180deg, rgba(94,53,177,1) 0%, rgba(26,35,126,1) 100%);
             color: white;
             width: 100%;
-            height: 100vh;
+            min-height: 90vh; /* Cambio a min-height */
             display: flex;
             align-items: center;
+            overflow: hidden; /* Prevenir desbordamiento */
         }
         
         .carousel-title {
@@ -156,8 +160,8 @@
         
         .carousel-container {
             position: relative;
-            width: 1440px;
-            max-width: 90%;
+            width: 96%; /* Cambiado para mejor responsividad */
+            max-width: 1400px;
             margin: 0 auto;
         }
         
@@ -170,7 +174,7 @@
             margin-bottom: 15px;
             height: auto;
             aspect-ratio: 16 / 9;
-            transform: scale(0.9);
+            transform: scale(0.95); /* Reducido ligeramente para resoluciones intermedias */
             transform-origin: center center;
             margin: 2% auto 15px auto;
         }
@@ -264,6 +268,7 @@
             position: relative;
             width: 100%;
             height: 90px;
+            flex-wrap: wrap; /* Permitir envolver en resoluciones intermedias */
         }
         
         .carousel-thumbnail {
@@ -307,13 +312,13 @@
         /* SECCIONES 50/50 */
         .split-section {
             display: flex;
-            height: 100vh;
-            padding: 0;
+            min-height: 90vh; /* Cambiado a min-height */
+            overflow: hidden; /* Prevenir desbordamiento */
         }
         
         .split-text {
             width: 50%;
-            padding: 4rem;
+            padding: 3rem; /* Reducido para resoluciones intermedias */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -363,9 +368,11 @@
         .benefits {
             background: linear-gradient(135deg, var(--telecom-light-blue), var(--telecom-purple));
             color: var(--text-light);
-            height: 100vh;
+            min-height: 90vh; /* Cambiado a min-height */
             display: flex;
             align-items: center;
+            padding: 4rem 2rem; /* Padding ajustado */
+            overflow: hidden; /* Prevenir desbordamiento */
         }
         
         .benefits h2 {
@@ -446,10 +453,12 @@
         .contact {
             background-color: var(--light-bg);
             text-align: center;
-            height: 70vh;
+            min-height: 70vh; /* Cambiado a min-height */
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 4rem 2rem; /* Padding ajustado */
+            overflow: hidden; /* Prevenir desbordamiento */
         }
         
         .contact h2 {
@@ -509,11 +518,13 @@
         
         /* Video Section */
         .video-section {
-
-            height: 100vh;
+            padding-top: 6rem;
+            padding-bottom: 6rem;
+            min-height: 90vh; /* Cambiado a min-height */
             background: linear-gradient(135deg, var(--telecom-blue), var(--telecom-purple));
             display: flex;
             align-items: center;
+            overflow: hidden; /* Prevenir desbordamiento */
         }
         
         .video-section h2 {
@@ -531,6 +542,7 @@
             border-radius: 5px;
             overflow: hidden;
             position: relative;
+            width: 90%; /* Ancho ajustado */
         }
         
         .video-container video {
@@ -538,6 +550,72 @@
             width: 100%;
             height: auto;
             vertical-align: middle;
+        }
+        
+        /* Media queries específicos para resoluciones intermedias */
+        /* Resolución específica para 1300-1500px */
+        @media (min-width: 1300px) and (max-width: 1500px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-text {
+                padding: 1.8rem;
+            }
+            
+            .split-text {
+                padding: 2.5rem;
+            }
+            
+            .stat-item {
+                padding: 1.2rem;
+            }
+            
+            .benefits-grid {
+                gap: 1.2rem;
+            }
+            
+            .benefit-card {
+                padding: 1.2rem;
+            }
+            
+            .carousel-main {
+                transform: scale(0.9);
+            }
+            
+            .video-section {
+                padding-top: 5rem;
+                padding-bottom: 5rem;
+            }
+        }
+        
+        /* Media query específica para resoluciones de 1366px (común en laptops) */
+        @media (min-width: 1250px) and (max-width: 1370px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .split-text {
+                padding: 2rem;
+            }
+            
+            .carousel-main {
+                transform: scale(0.85);
+            }
+            
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .video-section {
+                padding-top: 4rem;
+                padding-bottom: 4rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
         }
         
         /* Responsive adjustments */
@@ -554,6 +632,15 @@
             .benefits-grid {
                 gap: 1rem;
             }
+            
+            /* Ajustes adicionales para evitar overflows */
+            .section {
+                padding: 3rem 1.5rem;
+            }
+            
+            .hero-text-container {
+                padding: 2rem 1.5rem;
+            }
         }
         
         @media (max-width: 992px) {
@@ -565,7 +652,7 @@
             .split-section {
                 flex-direction: column;
                 height: auto;
-                min-height: 100vh;
+                min-height: 90vh;
             }
             
             .split-text, .split-image {
@@ -600,7 +687,8 @@
             }
             
             .video-section {
-                padding: 4rem 0;
+                padding-top: 6rem;
+                padding-bottom: 6rem;
             }
             
             .benefits-grid {
@@ -652,19 +740,19 @@
 
             .hero-text-container {
                 width: 85%;
-                padding: 2rem;
+                padding: 1.5rem;
             }
             
             .section, .hero, .benefits, .contact {
                 height: auto;
-                min-height: 100vh;
+                min-height: auto;
                 padding: 2.5rem 1rem;
             }
             
             .carousel-section {
                 padding: 2.5rem 0;
                 height: auto;
-                min-height: 100vh;
+                min-height: auto;
             }
             
             .carousel-main {
@@ -989,7 +1077,7 @@
 
     <!-- Contact Section -->
     <section class="section contact">
-        <div class="container scroll-reveal">
+        <div class="container">
             <h2>¿Listo para transformar su campo?</h2>
             <p>Descubra cómo nuestras soluciones de realidad virtual pueden revolucionar su negocio agrícola y mejorar la productividad de su campo. ¡Contáctenos hoy!</p>
             <a href="#" class="cta-button">Solicitar información</a>
