@@ -32,8 +32,8 @@
         }
         
         .section {
-            padding: 5rem 2rem;
-            min-height: 100vh;
+            padding: 3rem 2rem;
+            height: 100vh; /* Cambiado de min-height a height para asegurar que ocupe exactamente el viewport */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -50,7 +50,7 @@
         /* NUEVO HERO SECTION */
         .hero {
             position: relative;
-            min-height: 100vh;
+            height: 100vh; /* Cambiado de min-height a height */
             background-image: url('img/11032025-_DSC9355.jpg');
             background-size: cover;
             background-position: center;
@@ -76,12 +76,12 @@
             position: relative;
             z-index: 2;
             width: 100%;
-            height: 100vh;
+            height: 100%;
         }
 
         .hero-text-container {
             width: 50%;
-            padding: 5rem;
+            padding: 3rem; /* Reducido para asegurar que quepa en el viewport */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -91,7 +91,7 @@
             backdrop-filter: blur(10px);
             background: rgba(26, 35, 126, 0.3);
             border-radius: 20px;
-            padding: 3rem;
+            padding: 2.5rem; /* Reducido para mejor ajuste */
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
@@ -110,7 +110,7 @@
         }
 
         .hero-title {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 1.5rem;
@@ -128,15 +128,18 @@
         
         /* NUEVO CAROUSEL SECTION */
         .carousel-section {
-            padding: 6rem 0;
+            padding: 4rem 0;
             background: linear-gradient(180deg, rgba(94,53,177,1) 0%, rgba(26,35,126,1) 100%);
             color: white;
             width: 100%;
+            height: 100vh; /* Ajustado para ocupar la altura completa */
+            display: flex;
+            align-items: center;
         }
         
         .carousel-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem; /* Reducido para mejor ajuste */
             padding: 0 20px;
         }
         
@@ -301,13 +304,13 @@
         /* SECCIONES 50/50 */
         .split-section {
             display: flex;
-            min-height: 80vh;
+            height: 100vh; /* Cambiado de min-height a height */
             padding: 0;
         }
         
         .split-text {
             width: 50%;
-            padding: 5rem;
+            padding: 4rem; /* Ajustado para mejor distribución */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -357,6 +360,9 @@
         .benefits {
             background: linear-gradient(135deg, var(--telecom-light-blue), var(--telecom-purple));
             color: var(--text-light);
+            height: 100vh; /* Ajustado para ocupar toda la altura */
+            display: flex;
+            align-items: center;
         }
         
         .benefits h2 {
@@ -367,15 +373,16 @@
         
         .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            /* Cambiado a 4 columnas fijas en lugar de auto-fit */
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem; /* Reducido para asegurar que quepan en una línea */
         }
         
         .benefit-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 10px;
-            padding: 2rem;
+            padding: 1.5rem; /* Reducido para mejor ajuste */
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
         }
@@ -386,13 +393,13 @@
         }
         
         .benefit-title {
-            font-size: 1.5rem;
+            font-size: 1.3rem; /* Reducido para mejor ajuste */
             margin-bottom: 1rem;
             font-weight: 600;
         }
         
         .benefit-desc {
-            font-size: 1rem;
+            font-size: 0.95rem; /* Reducido para mejor ajuste */
             line-height: 1.6;
         }
         
@@ -437,6 +444,10 @@
         .contact {
             background-color: var(--light-bg);
             text-align: center;
+            height: 100vh; /* Ajustado para ocupar toda la altura */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .contact h2 {
@@ -496,9 +507,11 @@
         
         /* Video Section */
         .video-section {
-            padding: 6rem 0;
-            min-height: auto;
+            padding: 4rem 0;
+            height: 100vh; /* Ajustado para ocupar toda la altura */
             background: linear-gradient(135deg, var(--telecom-blue), var(--telecom-purple));
+            display: flex;
+            align-items: center;
         }
         
         .video-section h2 {
@@ -535,6 +548,10 @@
             .video-container {
                 max-width: 90%;
             }
+            
+            .benefits-grid {
+                gap: 1rem; /* Reducido para pantallas más pequeñas */
+            }
         }
         
         @media (max-width: 992px) {
@@ -542,11 +559,11 @@
                 max-width: 90%;
                 width: 800px;
             }
-
-
+            
             .split-section {
                 flex-direction: column;
-                min-height: auto;
+                height: auto; /* Permitir que ajuste su altura en pantallas más pequeñas */
+                min-height: 100vh;
             }
             
             .split-text, .split-image {
@@ -583,6 +600,10 @@
             .video-section {
                 padding: 4rem 0;
             }
+            
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+            }
         }
         
         @media (max-width: 768px) {
@@ -596,8 +617,9 @@
                 padding: 2rem;
             }
             
-            .section {
-                min-height: auto;
+            .section, .hero, .benefits, .video-section, .contact {
+                height: auto; /* Permitir ajuste en pantallas pequeñas */
+                min-height: 100vh;
                 padding: 3rem 1rem;
             }
             
@@ -630,7 +652,7 @@
             }
             
             .benefits-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* 1 columna en móviles */
                 gap: 1.5rem;
             }
             
@@ -832,7 +854,7 @@
             </div>
         </div>
         <div class="split-image">
-            <img src="img/stand.png" alt="Stand de Telecom en Expoagro">
+            <img src="img/EXPO AGRO-64.jpg" alt="Stand de Telecom en Expoagro">
         </div>
     </section>
     
