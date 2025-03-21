@@ -33,7 +33,7 @@
         
         .section {
             padding: 3rem 2rem;
-            height: 100vh; /* Cambiado de min-height a height para asegurar que ocupe exactamente el viewport */
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -50,14 +50,27 @@
         /* NUEVO HERO SECTION */
         .hero {
             position: relative;
-            height: 100vh; /* Cambiado de min-height a height */
-            background-image: url('./webp/11032025-_DSC9355.webp');
+            height: 100vh;
+            background-image: url('webp/11032025-_DSC9355.webp');
             background-size: cover;
             background-position: center;
             display: flex;
             align-items: center;
             overflow: hidden;
             padding: 0;
+        }
+        
+        /* Fallback para el fondo del hero por si no carga la imagen */
+        .hero-fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--telecom-blue), var(--telecom-purple));
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
         .hero::before {
@@ -81,7 +94,7 @@
 
         .hero-text-container {
             width: 50%;
-            padding: 3rem; /* Reducido para asegurar que quepa en el viewport */
+            padding: 3rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -91,7 +104,7 @@
             backdrop-filter: blur(10px);
             background: rgba(26, 35, 126, 0.3);
             border-radius: 20px;
-            padding: 2.5rem; /* Reducido para mejor ajuste */
+            padding: 2.5rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
@@ -132,14 +145,14 @@
             background: linear-gradient(180deg, rgba(94,53,177,1) 0%, rgba(26,35,126,1) 100%);
             color: white;
             width: 100%;
-            height: 100vh; /* Ajustado para ocupar la altura completa */
+            height: 100vh;
             display: flex;
             align-items: center;
         }
         
         .carousel-title {
             text-align: center;
-            margin-bottom: 2rem; /* Reducido para mejor ajuste */
+            margin-bottom: 2rem;
             padding: 0 20px;
         }
         
@@ -156,8 +169,8 @@
         
         .carousel-container {
             position: relative;
-            width: 1440px; /* Reducido de 1600px a 1440px (90% del original) */
-            max-width: 90%; /* Cambiado de 100% a 90% */
+            width: 1440px;
+            max-width: 90%;
             margin: 0 auto;
         }
         
@@ -170,9 +183,9 @@
             margin-bottom: 15px;
             height: auto;
             aspect-ratio: 16 / 9;
-            transform: scale(0.9); /* Reduce el tamaño al 90% */
+            transform: scale(0.9);
             transform-origin: center center;
-            margin: 2% auto 15px auto; /* Centrar horizontalmente con margen superior e inferior */
+            margin: 2% auto 15px auto;
         }
         
         .carousel-slides {
@@ -190,6 +203,7 @@
             opacity: 0;
             transition: opacity 0.5s ease;
             z-index: 1;
+            background-color: #1a237e; /* Color de fondo fallback */
         }
         
         .carousel-slide.active {
@@ -275,6 +289,7 @@
             transition: all 0.3s ease;
             opacity: 0.6;
             overflow: hidden;
+            background-color: #4051b5; /* Color de fondo fallback */
         }
         
         .carousel-thumbnail img {
@@ -289,7 +304,6 @@
             transform: scale(1.05);
         }
         
-        /* Verde horizontal abajo de la miniatura activa */
         .carousel-thumbnail.active::after {
             content: "";
             position: absolute;
@@ -307,13 +321,13 @@
         /* SECCIONES 50/50 */
         .split-section {
             display: flex;
-            height: 100vh; /* Cambiado de min-height a height */
+            height: 100vh;
             padding: 0;
         }
         
         .split-text {
             width: 50%;
-            padding: 4rem; /* Ajustado para mejor distribución */
+            padding: 4rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -323,6 +337,7 @@
             width: 50%;
             overflow: hidden;
             position: relative;
+            background-color: #f0f0f0; /* Color de fondo fallback */
         }
         
         .split-image img {
@@ -363,7 +378,7 @@
         .benefits {
             background: linear-gradient(135deg, var(--telecom-light-blue), var(--telecom-purple));
             color: var(--text-light);
-            height: 100vh; /* Ajustado para ocupar toda la altura */
+            height: 100vh;
             display: flex;
             align-items: center;
         }
@@ -376,16 +391,15 @@
         
         .benefits-grid {
             display: grid;
-            /* Cambiado a 4 columnas fijas en lugar de auto-fit */
             grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem; /* Reducido para asegurar que quepan en una línea */
+            gap: 1.5rem;
         }
         
         .benefit-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 10px;
-            padding: 1.5rem; /* Reducido para mejor ajuste */
+            padding: 1.5rem;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
         }
@@ -396,13 +410,13 @@
         }
         
         .benefit-title {
-            font-size: 1.3rem; /* Reducido para mejor ajuste */
+            font-size: 1.3rem;
             margin-bottom: 1rem;
             font-weight: 600;
         }
         
         .benefit-desc {
-            font-size: 0.95rem; /* Reducido para mejor ajuste */
+            font-size: 0.95rem;
             line-height: 1.6;
         }
         
@@ -447,7 +461,7 @@
         .contact {
             background-color: var(--light-bg);
             text-align: center;
-            height: 100vh; /* Ajustado para ocupar toda la altura */
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -511,7 +525,7 @@
         /* Video Section */
         .video-section {
             padding: 4rem 0;
-            height: 100vh; /* Ajustado para ocupar toda la altura */
+            height: 100vh;
             background: linear-gradient(135deg, var(--telecom-blue), var(--telecom-purple));
             display: flex;
             align-items: center;
@@ -540,6 +554,48 @@
             height: auto;
             vertical-align: middle;
         }
+
+        /* Nuevo: Fallback para video en caso de problemas de carga */
+        .video-fallback {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .video-fallback h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .video-fallback p {
+            font-size: 1rem;
+            max-width: 80%;
+        }
+
+        /* Mensaje de carga de imágenes */
+        .image-loading-message {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            z-index: 9999;
+            font-size: 14px;
+        }
         
         /* Responsive adjustments */
         @media (max-width: 1200px) {
@@ -553,7 +609,7 @@
             }
             
             .benefits-grid {
-                gap: 1rem; /* Reducido para pantallas más pequeñas */
+                gap: 1rem;
             }
         }
         
@@ -565,7 +621,7 @@
             
             .split-section {
                 flex-direction: column;
-                height: auto; /* Permitir que ajuste su altura en pantallas más pequeñas */
+                height: auto;
                 min-height: 100vh;
             }
             
@@ -605,7 +661,7 @@
             }
             
             .benefits-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
@@ -621,7 +677,7 @@
             }
             
             .section, .hero, .benefits, .video-section, .contact {
-                height: auto; /* Permitir ajuste en pantallas pequeñas */
+                height: auto;
                 min-height: 100vh;
                 padding: 3rem 1rem;
             }
@@ -655,7 +711,7 @@
             }
             
             .benefits-grid {
-                grid-template-columns: 1fr; /* 1 columna en móviles */
+                grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
             
@@ -671,12 +727,12 @@
         
         @media (max-width: 576px) {
             .carousel-section {
-                overflow-x: hidden;  /* evita scroll lateral */
+                overflow-x: hidden;
             }
             .carousel-container {
                 padding: 0;
-                margin: 0 auto;  /* centrado */
-                width: 100%;     /* forzar uso total del ancho */
+                margin: 0 auto;
+                width: 100%;
                 max-width: 100%;
                 height: auto;
             }
@@ -695,12 +751,12 @@
             }
             .carousel-main {
                 width: 100%;
-                height: 300px;  /* altura fija para uniformidad */
+                height: 300px;
                 margin-bottom: 10px;
             }
             .carousel-slide img {
                 width: 100%;
-                height: 100%;  /* asegurar que la imagen ocupe toda la altura del contenedor */
+                height: 100%;
                 object-fit: cover;
             }
             .carousel-thumbnails {
@@ -727,11 +783,9 @@
                 min-width: 100%;
                 margin-bottom: 1rem;
             }
-            /* Ocultar el contenido textual del carousel en mobile */
             .carousel-slide-content {
                 display: none;
             }
-            /* Forzar centrado de la sección en mobile */
             .carousel-container {
                 margin-left: auto;
                 margin-right: auto;
@@ -749,8 +803,12 @@
     </style>
 </head>
 <body>
+    <!-- Mensaje de carga para depuración -->
+    <div id="loadingMessage" class="image-loading-message">Cargando recursos...</div>
+
     <!-- Hero Section -->
     <section class="hero">
+        <div class="hero-fallback" id="heroFallback"></div>
         <div class="hero-content">
             <div class="hero-text-container">
                 <div class="hero-text">
@@ -773,35 +831,35 @@
                 <div class="carousel-main">
                     <div class="carousel-slides" id="carouselSlides">
                         <div class="carousel-slide active">
-                            <img src="./webp/monitoreo.webp" alt="Lentes VR de última generación">
+                            <img src="webp/monitoreo.webp" alt="Lentes VR de última generación" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#1a237e';">
                             <div class="carousel-slide-content">
                                 <h3 class="carousel-slide-title">Lentes VR de última generación</h3>
                                 <p class="carousel-slide-desc">Nuestros dispositivos de realidad virtual ofrecen una experiencia inmersiva para monitorear y analizar datos del campo en tiempo real.</p>
                             </div>
                         </div>
                         <div class="carousel-slide">
-                            <img src="./webp/11032025-_DSC9325.webp" alt="Agricultor usando VR">
+                            <img src="webp/11032025-_DSC9325.webp" alt="Agricultor usando VR" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#1a237e';">
                             <div class="carousel-slide-content">
                                 <h3 class="carousel-slide-title">Adopción tecnológica</h3>
                                 <p class="carousel-slide-desc">Productores agrícolas adoptando la tecnología VR en sus operaciones diarias.</p>
                             </div>
                         </div>
                         <div class="carousel-slide">
-                            <img src="./webp/Telecom - Horizontal.00_01_41_23.Imagen fija004.webp" alt="Datos en tiempo real">
+                            <img src="webp/Telecom - Horizontal.00_01_41_23.Imagen fija004.webp" alt="Datos en tiempo real" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#1a237e';">
                             <div class="carousel-slide-content">
                                 <h3 class="carousel-slide-title">Análisis de datos</h3>
                                 <p class="carousel-slide-desc">Visualización de datos en tiempo real para tomar decisiones inmediatas.</p>
                             </div>
                         </div>
                         <div class="carousel-slide">
-                            <img src="./webp/portada.webp" alt="Stand Telecom Expoagro">
+                            <img src="webp/portada.webp" alt="Stand Telecom Expoagro" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#1a237e';">
                             <div class="carousel-slide-content">
                                 <h3 class="carousel-slide-title">Telecom en Expoagro 2025</h3>
                                 <p class="carousel-slide-desc">Nuestra presencia en la feria agrícola más importante de Argentina.</p>
                             </div>
                         </div>
                         <div class="carousel-slide">
-                            <img src="./webp/soluciones.webp" alt="Demostración tecnológica">
+                            <img src="webp/soluciones.webp" alt="Demostración tecnológica" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#1a237e';">
                             <div class="carousel-slide-content">
                                 <h3 class="carousel-slide-title">Demostración tecnológica</h3>
                                 <p class="carousel-slide-desc">Visitantes experimentando la tecnología VR durante Expoagro 2025.</p>
@@ -816,19 +874,19 @@
                 
                 <div class="carousel-thumbnails" id="carouselThumbnails">
                     <div class="carousel-thumbnail active" data-index="0">
-                        <img src="./webp/monitoreo.webp" alt="Thumbnail 1">
+                        <img src="webp/monitoreo.webp" alt="Thumbnail 1" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#4051b5';">
                     </div>
                     <div class="carousel-thumbnail" data-index="1">
-                        <img src="./webp/11032025-_DSC9325.webp" alt="Thumbnail 2">
+                        <img src="webp/11032025-_DSC9325.webp" alt="Thumbnail 2" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#4051b5';">
                     </div>
                     <div class="carousel-thumbnail" data-index="2">
-                        <img src="./webp/Telecom - Horizontal.00_01_41_23.Imagen fija004.webp" alt="Thumbnail 3">
+                        <img src="webp/Telecom - Horizontal.00_01_41_23.Imagen fija004.webp" alt="Thumbnail 3" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#4051b5';">
                     </div>
                     <div class="carousel-thumbnail" data-index="3">
-                        <img src="./webp/portada.webp" alt="Thumbnail 4">
+                        <img src="webp/portada.webp" alt="Thumbnail 4" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#4051b5';">
                     </div>
                     <div class="carousel-thumbnail" data-index="4">
-                        <img src="./webp/soluciones.webp" alt="Thumbnail 5">
+                        <img src="webp/soluciones.webp" alt="Thumbnail 5" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#4051b5';">
                     </div>
                 </div>
             </div>
@@ -857,7 +915,7 @@
             </div>
         </div>
         <div class="split-image">
-            <img src="./webp/EXPO AGRO-66.webp" alt="Stand de Telecom en Expoagro">
+            <img src="webp/EXPO AGRO-66.webp" alt="Stand de Telecom en Expoagro" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#f0f0f0';">
         </div>
     </section>
     
@@ -866,10 +924,14 @@
         <div class="container scroll-reveal">
             <h2>Tecnología AgTech VR en acción</h2>
             <div class="video-container">
-                <video width="100%" controls autoplay muted loop>
-                    <source src="./video/Telecom - Expoagro - 30sec.mp4" type="video/mp4">
+                <video id="mainVideo" width="100%" controls poster="/webp/video-poster.webp" preload="metadata">
+                    <source src="/video/Telecom - Expoagro - 30sec.mp4" type="video/mp4">
                     Su navegador no soporta videos HTML5.
                 </video>
+                <div id="videoFallback" class="video-fallback">
+                    <h3>Video no disponible</h3>
+                    <p>No se ha podido cargar el video "Tecnología AgTech VR en acción". Por favor, intente más tarde o verifique su conexión a internet.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -883,7 +945,7 @@
             <p>Para determinar la viabilidad de un proyecto, la empresa analiza el polígono del campo, las condiciones geográficas y la disponibilidad de antenas en la región.</p>
         </div>
         <div class="split-image">
-            <img src="./webp/usuario1.webp" alt="Usuario explorando la tecnología VR">
+            <img src="webp/usuario1.webp" alt="Usuario explorando la tecnología VR" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#121b53';">
         </div>
     </section>
 
@@ -921,7 +983,7 @@
             <p>Por ello, también en Pergamino y Rojas, más de 134.000 personas tienen acceso a internet de calidad, impactando en 228 escuelas, 28 centros de salud y en la conectividad de rutas rurales.</p>
         </div>
         <div class="split-image">
-            <img src="./webp/usuario2.webp" alt="Usuario con lentes VR">
+            <img src="webp/usuario2.webp" alt="Usuario con lentes VR" loading="lazy" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#f0f0f0';">
         </div>
     </section>
 
@@ -935,6 +997,90 @@
     </section>
 
     <script>
+        // Variables para controlar estados de carga
+        let imagesLoaded = 0;
+        let totalImages = document.querySelectorAll('img').length;
+        let loadingMessageShown = false;
+        let loadingTimeout;
+        const loadingMessage = document.getElementById('loadingMessage');
+
+        // Función para mostrar mensaje de carga
+        function showLoadingMessage(message) {
+            loadingMessage.textContent = message;
+            loadingMessage.style.display = 'block';
+            loadingMessageShown = true;
+            
+            // Ocultar el mensaje después de 5 segundos
+            clearTimeout(loadingTimeout);
+            loadingTimeout = setTimeout(() => {
+                loadingMessage.style.display = 'none';
+                loadingMessageShown = false;
+            }, 5000);
+        }
+
+        // Verificar si la imagen del Hero carga correctamente
+        const heroSection = document.querySelector('.hero');
+        const heroFallback = document.getElementById('heroFallback');
+        
+        // Comprobamos si la imagen de fondo del hero carga
+        if (heroSection) {
+            const testImage = new Image();
+            testImage.onload = function() {
+                // La imagen cargó correctamente
+                console.log("Imagen de hero cargada correctamente");
+            };
+            testImage.onerror = function() {
+                // La imagen no cargó, mostrar el fallback
+                console.log("Error al cargar la imagen de hero");
+                heroFallback.style.opacity = 1;
+                showLoadingMessage("Algunas imágenes no pudieron cargarse correctamente.");
+            };
+            // Obtenemos la URL de la imagen de fondo
+            const heroBackgroundUrl = window.getComputedStyle(heroSection).backgroundImage.replace(/url\(['"]?([^'"]*)['"]?\)/gi, '$1');
+            testImage.src = heroBackgroundUrl;
+        }
+
+        // Verificar si el video carga correctamente
+        const mainVideo = document.getElementById('mainVideo');
+        const videoFallback = document.getElementById('videoFallback');
+        
+        if (mainVideo) {
+            mainVideo.addEventListener('error', function() {
+                console.log("Error al cargar el video");
+                videoFallback.style.display = 'flex';
+                mainVideo.style.display = 'none';
+                showLoadingMessage("El video no pudo cargarse correctamente.");
+            });
+            
+            // Verificar si el video está listo
+            mainVideo.addEventListener('canplay', function() {
+                console.log("Video listo para reproducirse");
+                videoFallback.style.display = 'none';
+            });
+        }
+
+        // Verificar todas las imágenes
+        document.addEventListener('DOMContentLoaded', function() {
+            const allImages = document.querySelectorAll('img');
+            
+            allImages.forEach(img => {
+                if (img.complete) {
+                    imagesLoaded++;
+                } else {
+                    img.addEventListener('load', function() {
+                        imagesLoaded++;
+                        // console.log(`Imagen cargada ${imagesLoaded}/${totalImages}`);
+                    });
+                    
+                    img.addEventListener('error', function() {
+                        imagesLoaded++;
+                        console.log(`Error al cargar imagen: ${this.src}`);
+                        showLoadingMessage("Algunas imágenes no pudieron cargarse correctamente.");
+                    });
+                }
+            });
+        });
+
         // Scroll reveal animation
         document.addEventListener('DOMContentLoaded', function() {
             const scrollElements = document.querySelectorAll('.scroll-reveal');
@@ -1014,8 +1160,8 @@
             }
             
             // Add event listeners
-            nextButton.addEventListener('click', nextSlide);
-            prevButton.addEventListener('click', prevSlide);
+            if (nextButton) nextButton.addEventListener('click', nextSlide);
+            if (prevButton) prevButton.addEventListener('click', prevSlide);
             
             // Add event listeners to thumbnails
             thumbnails.forEach(thumbnail => {
@@ -1040,14 +1186,16 @@
             
             const carouselMain = document.querySelector('.carousel-main');
             
-            carouselMain.addEventListener('touchstart', (e) => {
-                touchStartX = e.touches[0].clientX;
-            });
-            
-            carouselMain.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].clientX;
-                handleSwipe();
-            });
+            if (carouselMain) {
+                carouselMain.addEventListener('touchstart', (e) => {
+                    touchStartX = e.touches[0].clientX;
+                });
+                
+                carouselMain.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].clientX;
+                    handleSwipe();
+                });
+            }
             
             function handleSwipe() {
                 const swipeThreshold = 50;
@@ -1058,7 +1206,31 @@
                     prevSlide();
                 }
             }
+
+            // Auto-avance del carousel cada 5 segundos
+            setInterval(nextSlide, 5000);
         });
+
+        // Función para crear fallbacks de imagen estático por si se carga desde caché
+        function checkImagesOnLoad() {
+            // Verificamos todas las imágenes después de que la página ha cargado
+            const allImages = document.querySelectorAll('img');
+            allImages.forEach(img => {
+                if (!img.complete || img.naturalHeight === 0) {
+                    // Si la imagen no se ha cargado, ocultarla y mostrar el color de fondo
+                    img.style.display = 'none';
+                    img.parentNode.style.backgroundColor = img.parentNode.classList.contains('carousel-thumbnail') 
+                        ? '#4051b5' : img.parentNode.classList.contains('carousel-slide') 
+                        ? '#1a237e' : '#f0f0f0';
+                }
+            });
+        }
+        
+        // Agregar evento onload para verificar las imágenes cuando la página cargue completamente
+        window.addEventListener('load', checkImagesOnLoad);
+
+        // Verificar la carga correcta de las imágenes después de 3 segundos (tiempo para permitir descargas lentas)
+        setTimeout(checkImagesOnLoad, 3000);
     </script>
 </body>
 </html>
