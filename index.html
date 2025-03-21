@@ -156,8 +156,8 @@
         
         .carousel-container {
             position: relative;
-            width: 1600px;
-            max-width: 100%;
+            width: 1440px; /* Reducido de 1600px a 1440px (90% del original) */
+            max-width: 90%; /* Cambiado de 100% a 90% */
             margin: 0 auto;
         }
         
@@ -170,6 +170,9 @@
             margin-bottom: 15px;
             height: auto;
             aspect-ratio: 16 / 9;
+            transform: scale(0.9); /* Reduce el tamaño al 90% */
+            transform-origin: center center;
+            margin: 2% auto 15px auto; /* Centrar horizontalmente con margen superior e inferior */
         }
         
         .carousel-slides {
@@ -854,7 +857,7 @@
             </div>
         </div>
         <div class="split-image">
-            <img src="img/EXPO AGRO-64.jpg" alt="Stand de Telecom en Expoagro">
+            <img src="img/stand.png" alt="Stand de Telecom en Expoagro">
         </div>
     </section>
     
