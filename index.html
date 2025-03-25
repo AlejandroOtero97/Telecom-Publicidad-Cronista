@@ -79,7 +79,6 @@
             z-index: 2;
             width: 100%;
             height: 100%;
-            padding: 1rem; /* Padding interior mínimo */
         }
 
         .hero-text-container {
@@ -143,7 +142,6 @@
         
         .carousel-title {
             text-align: center;
-            margin-bottom: 2rem;
             padding: 0 20px;
         }
         
@@ -160,8 +158,8 @@
         
         .carousel-container {
             position: relative;
-            width: 96%; /* Cambiado para mejor responsividad */
-            max-width: 1400px;
+            width: 90%; /* Cambiado de 96% a 90% para hacerlo más compacto */
+            max-width: 1200px; /* Reducido de 1400px para un carousel más pequeño */
             margin: 0 auto;
         }
         
@@ -174,7 +172,7 @@
             margin-bottom: 15px;
             height: auto;
             aspect-ratio: 16 / 9;
-            transform: scale(0.95); /* Reducido ligeramente para resoluciones intermedias */
+            transform: scale(0.85); /* Reducido de 0.95 a 0.85 para un tamaño más pequeño */
             transform-origin: center center;
             margin: 2% auto 15px auto;
         }
@@ -340,13 +338,13 @@
         }
         
         .split-section h2 {
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             margin-bottom: 1.5rem;
             color: var(--telecom-blue);
         }
         
         .split-section p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1.7;
             margin-bottom: 1.5rem;
         }
@@ -376,7 +374,7 @@
         }
         
         .benefits h2 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 2rem;
             text-align: center;
         }
@@ -536,13 +534,13 @@
         }
         
         .video-container {
-            max-width: 1200px;
+            max-width: 1000px; /* Reducido de 1200px */
             margin: 0 auto;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.664);
             border-radius: 5px;
             overflow: hidden;
             position: relative;
-            width: 90%; /* Ancho ajustado */
+            width: 80%; /* Reducido de 90% a 80% */
         }
         
         .video-container video {
@@ -580,7 +578,7 @@
             }
             
             .carousel-main {
-                transform: scale(0.9);
+                transform: scale(0.8); /* Reducido de 0.9 a 0.8 */
             }
             
             .video-section {
@@ -600,7 +598,7 @@
             }
             
             .carousel-main {
-                transform: scale(0.85);
+                transform: scale(0.75); /* Reducido de 0.85 a 0.75 */
             }
             
             .benefits-grid {
@@ -811,9 +809,23 @@
             }
             
             .hero-title {
-                font-size: 1.8rem;
+                font-size: 1.2rem;
             }
-            
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+            .carousel-title h2 {
+                font-size: 2rem;
+            }
+
+            .carousel-title p {
+                display: none;
+            }
+            .carousel-thumbnails {
+                display: none;
+            }
+
+
             .hero-text {
                 padding: 1.5rem;
             }
@@ -851,9 +863,15 @@
                 height: 40px;
                 font-size: 1rem;
             }
+            .split-section h2 {
+                font-size: 1.7rem;
+            }
+            .split-section p {
+                font-size: 0.8rem;
+            }
             
             .split-image {
-                height: 250px;
+                height: 300px;
             }
             
             .stat-item {
@@ -869,9 +887,15 @@
                 font-size: 1.5rem;
                 margin-bottom: 1rem;
             }
-            
             .video-container {
+                width: 100%;
                 border-radius: 8px;
+            }
+            .contact p{
+                font-size: 1rem;
+            }
+            .cta-button {
+                padding: 0.6rem 1.7rem;
             }
             
             /* Reducir espaciado */
@@ -884,11 +908,14 @@
             }
             
             .benefits h2 {
+                font-size: 1.2rem;
                 margin-bottom: 1.5rem;
             }
-            
+            .contact h2{
+                font-size: 2rem;
+            }
             .benefit-card {
-                padding: 1.25rem;
+                font-size: 0.7rem;
             }
             
             /* Mejora específica para el carrusel en móvil */
@@ -1007,7 +1034,7 @@
             </div>
         </div>
         <div class="split-image">
-            <img src="webp/EXPO AGRO-66.webp" alt="Stand de Telecom en Expoagro">
+            <img src="webp/tecnologias.webp" alt="Stand de Telecom en Expoagro">
         </div>
     </section>
     
@@ -1175,8 +1202,8 @@
             }
             
             // Add event listeners
-            if (prevButton) prevButton.addEventListener('click', nextSlide);
-            if (nextButton) nextButton.addEventListener('click', prevSlide);
+            if (prevButton) prevButton.addEventListener('click', prevSlide);
+            if (nextButton) nextButton.addEventListener('click', nextSlide);
             
             // Add event listeners to thumbnails
             thumbnails.forEach(thumbnail => {
