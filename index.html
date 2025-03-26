@@ -729,18 +729,6 @@
         
         /* Optimizaciones para móvil */
         @media (max-width: 768px) {
-            /* Desactivar todas las transiciones en móvil */
-            * {
-                transition: none !important;
-                animation: none !important;
-            }
-            
-            /* Desactivar las animaciones de scroll-reveal */
-            .scroll-reveal {
-                opacity: 1 !important;
-                transform: none !important;
-            }
-            
             /* Configuración para la sección de video */
             .video-section {
                 height: auto !important;
@@ -1057,15 +1045,15 @@
             <p>La participación de la empresa incluyó un stand interactivo dentro de la "Carpa Telecom AgTech", donde los visitantes pudieron conocer de primera mano las soluciones de conectividad, Internet de las Cosas (IoT), Cloud y ciberseguridad.</p>
             <div class="stats-container">
                 <div class="stat-item">
-                    <div class="stat-number">97%</div>
+                    <div class="stat-number" data-value="97" data-suffix="%">0%</div>
                     <div class="stat-label">Cobertura en Pergamino y Rojas</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">+500K</div>
+                    <div class="stat-number" data-value="500" data-suffix="K">0K</div>
                     <div class="stat-label">Hectáreas cubiertas</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">134K</div>
+                    <div class="stat-number" data-value="134" data-suffix="K">0K</div>
                     <div class="stat-label">Personas con acceso a internet</div>
                 </div>
             </div>
@@ -1152,50 +1140,86 @@
         // Scroll reveal animation - optimizado para rendimiento
         document.addEventListener('DOMContentLoaded', function() {
             const scrollElements = document.querySelectorAll('.scroll-reveal');
-            const isMobile = window.innerWidth <= 768;
             
-            // En móviles, simplemente mostramos todos los elementos sin animación
-            if (isMobile) {
-                scrollElements.forEach(el => {
-                    el.classList.add('active');
-                });
-            } else {
-                // En desktop, usamos la animación normal
-                const elementInView = (el, scrollOffset = 100) => {
-                    const elementTop = el.getBoundingClientRect().top;
-                    return (
-                        elementTop <= 
-                        (window.innerHeight || document.documentElement.clientHeight) - scrollOffset
-                    );
-                };
-                
-                const displayScrollElement = (element) => {
-                    element.classList.add('active');
-                };
-                
-                const handleScrollAnimation = () => {
-                    scrollElements.forEach((el) => {
-                        if (elementInView(el, 100)) {
-                            displayScrollElement(el);
+            // Función para detectar si un elemento está en la vista
+            const elementInView = (el, scrollOffset = 100) => {
+                const elementTop = el.getBoundingClientRect().top;
+                return (
+                    elementTop <= 
+                    (window.innerHeight || document.documentElement.clientHeight) - scrollOffset
+                );
+            };
+            
+            const displayScrollElement = (element) => {
+                element.classList.add('active');
+            };
+            
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el, 100)) {
+                        displayScrollElement(el);
+                        
+                        // Si este elemento contiene estadísticas, anima los contadores
+                        const statsContainer = el.querySelector('.stats-container');
+                        if (statsContainer) {
+                            animateCounters(statsContainer);
                         }
-                    });
-                };
-                
-                // Usamos requestAnimationFrame para mejor rendimiento en el scroll
-                let ticking = false;
-                window.addEventListener('scroll', () => {
-                    if (!ticking) {
-                        window.requestAnimationFrame(() => {
-                            handleScrollAnimation();
-                            ticking = false;
-                        });
-                        ticking = true;
                     }
                 });
-                
-                // Initialize
-                handleScrollAnimation();
+            };
+            
+            // Animación de contadores
+            function animateCounters(container) {
+                const counters = container.querySelectorAll('.stat-number');
+                counters.forEach(counter => {
+                    // Solo animar si no se ha animado antes
+                    if (counter.getAttribute('data-animated') !== 'true') {
+                        counter.setAttribute('data-animated', 'true');
+                        
+                        const target = parseFloat(counter.getAttribute('data-value'));
+                        const suffix = counter.getAttribute('data-suffix') || '';
+                        let current = 0;
+                        const duration = 1500; // duración en ms
+                        const start = Date.now();
+                        
+                        function updateCounter() {
+                            const elapsed = Date.now() - start;
+                            const progress = Math.min(elapsed / duration, 1);
+                            
+                            // Función de easing (cubic bezier)
+                            const easeOut = function(t) { 
+                                return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                            };
+                            
+                            current = Math.ceil(easeOut(progress) * target);
+                            counter.textContent = current + suffix;
+                            
+                            if (progress < 1) {
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                counter.textContent = target + suffix;
+                            }
+                        }
+                        
+                        updateCounter();
+                    }
+                });
             }
+            
+            // Usamos requestAnimationFrame para mejor rendimiento en el scroll
+            let ticking = false;
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        handleScrollAnimation();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+            
+            // Initialize - verificar elementos visibles al cargar
+            handleScrollAnimation();
             
             // Carousel optimizado
             const slides = document.querySelectorAll('.carousel-slide');
