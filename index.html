@@ -822,6 +822,10 @@
         
         @media (max-width: 576px) {
             /* Optimizaciones adicionales para pantallas muy pequeñas */
+            .hero {
+                background-position: right;
+            }
+            
             .carousel-section {
                 overflow-x: hidden;
                 padding: 2rem 0;
@@ -1269,10 +1273,8 @@
                 });
             }
             
-            // Auto-avance del carousel solo en desktop, no en móvil (para ahorrar recursos)
-            if (!isMobile) {
-                setInterval(nextSlide, 5000);
-            }
+            // Auto-avance del carousel en todos los dispositivos
+            setInterval(nextSlide, 5000);
         });
     </script>
 </body>
